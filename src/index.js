@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import View from './View';
+import LoginPage from './LoginPage/LoginPage';
+import './index.css';
 
-ReactDOM.render(<View />, document.getElementById('root'));
+ReactDOM.render(<LoginPage />, document.getElementById('root'));

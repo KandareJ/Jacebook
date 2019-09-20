@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import CreateAccount from './CreateAccount';
-import './LoginPage.css'
+import Summary from './Summary';
+import './LoginView.css';
 
 export default class Body extends Component {
   render() {
     return(
       <div className="login-body">
         <Grid container spacing={3}>
-          <Grid item xs={6} />
+          <Grid item xs={3} />
+          <Grid item xs={3}>
+            <Summary />
+          </Grid>
           <Grid item xs={6}>
             <CreateAccount />
           </Grid>

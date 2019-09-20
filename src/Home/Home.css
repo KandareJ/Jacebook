@@ -1,0 +1,71 @@
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.menu-bar {
+  background-color: #3a5ca9 !important;
+  height: 30px;
+}
+
+.jacebook-title {
+  font-size: 30px;
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  width: 88%;
+  margin-top: 3px;
+  height: 17px;
+  border-style: solid;
+  border-width: 1px;
+  border-right: none;
+  border-color: #344f8d;
+}
+
+.search-button {
+  width: 10%;
+  margin-top: 3px;
+  height: 21px;
+  background-color: #f3f5f6;
+  border-left: none;
+  outline: none;
+  border-width: 1px;
+  border-color: #344f8d;
+}
+
+.logout-button {
+  margin-top: 3px;
+  background-color: #4969ad;
+  color: white;
+  border:none;
+  background-color: inherit;
+  padding-top: 3px;
+  padding-bottom: 2px;
+  outline:none;
+}
+
+.logout-button:active {
+  color: #b3b3b3;
+}
+
+.menu-button {
+  margin-left: 20px;
+  float: right;
+}
+
+.menu-icon {
+  margin-top: 5px;
+  color: #1d2a45;
+}
+
+.menu-icon:hover {
+  color: #0f1523;
+}
+
+.menu-icon:active {
+  color: #ffffff;
+}

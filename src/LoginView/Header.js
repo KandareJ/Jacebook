@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, Grid } from '@material-ui/core';
 import LoginForm from './LoginForm';
-import './LoginPage.css'
+import './LoginView.css'
 
 export default class Header extends Component {
 

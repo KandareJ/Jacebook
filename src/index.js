@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginPage from './LoginPage/LoginPage';
+import Home from './Home/Home';
+import LoginView from './LoginView/LoginView'
 import './index.css';
 
-ReactDOM.render(<LoginPage />, document.getElementById('root'));
+ReactDOM.render(<Home />, document.getElementById('root'));

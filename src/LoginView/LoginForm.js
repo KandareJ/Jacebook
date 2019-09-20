@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import Presenter from '../Presenter';
-import './LoginPage.css';
+import './LoginView.css';
 
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      alias: "",
       password: "",
       loggedIn: false
     }
-    this.presenter = new Presenter(); //The view class has a presenter to get the data from the model
     this.loginRequest = this.loginRequest.bind(this)
     this.login = this.login.bind(this)
   }
 
-  updateEmail(e) {
+  updatealias(e) {
     var val = e.target.value;
-    this.setState({email: val})
+    this.setState({alias: val})
   }
 
   updatePassword(e) {
@@ -29,7 +27,6 @@ export default class LoginForm extends Component {
   //presenter gets the data from the model and checks to see if the username and password are correct
   //if they are correct, the presenter calls login in the view and logs the user in
   loginRequest() {
-    this.presenter.login(this.state.email, this.state.password, this.login);
   }
 
   login() {
@@ -40,8 +37,8 @@ export default class LoginForm extends Component {
     return(
       <form className="form-inline login-form">
         <div className="form-group">
-          <p className="form-text">Email:</p>
-          <input className="form-input" type="text" value={this.state.email} onChange={this.updateEmail.bind(this)} />
+          <p className="form-text">Alias:</p>
+          <input className="form-input" type="text" value={this.state.alias} onChange={this.updatealias.bind(this)} />
         </div>
         <div className="form-group">
           <p className="form-text">Password:</p>

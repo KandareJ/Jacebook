@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
-import './LoginPage.css'
 
-export default class Footer extends Component {
+export default class Newsfeed extends Component {
   render() {
     return(
-      <div>
+      <div className="login-body">
         <Grid container spacing={3}>
           <Grid item xs={3} />
-          <Grid item xs={9}>
-            <p className="footer-text">Jacebook © 2019</p>
+          <Grid item xs={3}>
+          </Grid>
+          <Grid item xs={6}>
           </Grid>
         </Grid>
       </div>

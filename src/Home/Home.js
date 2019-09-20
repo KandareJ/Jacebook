@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Body from './Body';
-import Footer from './Footer';
+import Newsfeed from '../Newsfeed/Newsfeed';
 
-export default class LoginPage extends Component {
+export default class Home extends Component {
   render() {
     return(
       <div>
         <Header />
-        <Body />
-        <Footer />
+        <Newsfeed />
       </div>
     );
   }

@@ -1,0 +1,170 @@
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-group {
+  font-size: 10px;
+  margin: 5px;
+}
+
+.form-text {
+  padding: 0px;
+  margin: 0px;
+}
+
+.form-button {
+  margin-top: 10px;
+  background-color: #4969ad;
+  color: white;
+  border-color: #253f70;
+  padding-top: 3px;
+  padding-bottom: 2px;
+  outline:none;
+}
+
+.form-button:active {
+  background-color: #3c5994;
+}
+
+.form-input {
+  background-color: #e5eefd;
+}
+
+.app-bar {
+  background-image: linear-gradient(#455d96, #2e437e) !important;
+}
+
+.jacebook-title {
+  font-size: 30px;
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.login-form {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.login-body {
+  padding-top: 60px;
+  background-color: #e6e8eb
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #6a6a6a
+}
+
+.create-account-input {
+  width: 300px;
+  font-size: 15px;
+  padding: 3px;
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.create-account-input-names-left {
+  width: 140px;
+  font-size: 15px;
+  padding: 3px;
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 5px;
+}
+
+.create-account-input-names-right {
+  width: 140px;
+  font-size: 15px;
+  padding: 3px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
+.create-account-title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.create-account-subtitle {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.create-account-header {
+  margin-top: 5px;
+  margin-bottom: 2px;
+  font-size: 15px;
+}
+
+.create-account-input-file {
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.create-account-input-file-space {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.privacy-policy {
+  font-size: 10px;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.sign-up {
+  width: 200px;
+  height: 40px;
+  background-image: linear-gradient(#76a95e, #62864b);
+  font-size: 20px;
+  color: white;
+  margin-top: 15px;
+  margin-bottom:15px;
+  border-radius: 5px;
+  border-color: #354f1e;
+  border-width: 1px;
+  outline: none;
+  text-shadow: 1px 1px #849679;
+}
+
+.sign-up:active {
+  background-image: linear-gradient(#86b66c, #62864b);
+}
+
+.horizontal-rule {
+  width: 300px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0px
+}
+
+.summary-title {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.summary-item {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.summary-icon {
+  color: #aeb8d0;
+  margin-right: 7px;
+}
+
+.summary-text {
+  font-size: 16px;
+}

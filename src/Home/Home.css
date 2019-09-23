@@ -24,6 +24,7 @@
   border-width: 1px;
   border-right: none;
   border-color: #344f8d;
+  outline: none;
 }
 
 .search-button {

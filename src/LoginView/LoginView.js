@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 export default class LoginView extends Component {
   render() {
-    return(
+    return (
       <div>
         <Header />
         <Body />

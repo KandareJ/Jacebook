@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
-import NewPost from './NewPost';
+import NewPostButtons from './NewPostButtons';
 import Card from '@material-ui/core/Card';
 import './NewsFeed.css';
 
-export default class Newsfeed extends Component {
+export default class NewPost extends Component {
   render() {
     return(
       <div>
@@ -19,9 +19,7 @@ export default class Newsfeed extends Component {
             </Grid>
           </Grid>
           <hr className="divider" />
-          <div>
-
-          </div>
+          <NewPostButtons />
         </Card>
       </div>
     );

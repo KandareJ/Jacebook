@@ -1,3 +1,10 @@
+.button-inline {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+}
+
 .feed-body {
   padding-top: 35px;
   background-color: #e6e8eb
@@ -21,13 +28,63 @@
   width: 90%;
   border: none;
   outline: none;
+  resize: none;
   font-size: 15px;
 }
 
-.divider {
-  width: 90%
+.new-content-media {
 }
 
-.new-content-media {
-  color: #bfbfbf;
+.align-center {
+  width: 100%;
+  text-align: center;
+}
+
+.post-button {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #4969ad;
+  color: white;
+  border-color: #253f70;
+  font-size: 12px;
+  outline:none;
+}
+
+.post-button:active {
+  background-color: #3c5994;
+}
+
+.add-media-hidden {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.new-post-option {
+  background-color: #f3f5f6;
+  color: #9c9c9c;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.new-post-option:hover {
+  background-color: #e8eaee;
+}
+
+.new-post-option-text {
+  color: black;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.card-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
 }

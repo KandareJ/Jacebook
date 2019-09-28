@@ -9,9 +9,9 @@ export default class HomeButtons extends Component {
     return(
       <div>
         <button className="logout-button menu-button">Logout</button>
-        <FontAwesomeIcon className="menu-icon menu-button" size="x" icon={faUsers} />
-        <FontAwesomeIcon className="menu-icon menu-button" size="x" icon={faNewspaper} />
-        <FontAwesomeIcon className="menu-icon menu-button" size="x" icon={faHome} />
+        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faUsers} />
+        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faNewspaper} />
+        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faHome} />
       </div>
     );
   }

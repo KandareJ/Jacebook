@@ -1,0 +1,46 @@
+.profile-image {
+  width: 200px;
+  border-radius: 106px;
+  border: solid;
+  border-width: 3px;
+  border-color: #585a5e;
+  margin: 10px;
+}
+
+.profile-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #3a5ca9;
+}
+
+.profile-alias {
+  font-size: 20px;
+  font-weight: normal;
+  color: #9c9c9c;
+}
+
+.profile-head-card {
+  height: 225px;
+  position: relative;
+}
+
+.list-horizontal-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.float-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 75%
+}
+
+.profile-name-alias {
+  margin-top: 80px;
+  margin-left: 30px;
+}
+
+.follows {
+  width: 90px;
+  margin: 3px;
+}

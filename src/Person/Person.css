@@ -1,0 +1,19 @@
+.person-image {
+  width: 100%
+}
+
+.person-name {
+  font-size: 90%;
+  font-weight: bold;
+  color: #3a5ca9;
+}
+
+.person-alias {
+  font-size: 75%;
+  font-weight: lighter;
+  color: #9c9c9c;
+}
+
+.person-name-alias-margin {
+  margin: 1px;
+}

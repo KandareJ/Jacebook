@@ -1,0 +1,12 @@
+.mention {
+  color: #3a5ca9;
+  border-radius: 10px;
+  width: inherit;
+  padding: 4px;
+  display: inline-block;
+}
+
+.mention:hover {
+  background-color: #e8eaee;
+  cursor: pointer;
+}

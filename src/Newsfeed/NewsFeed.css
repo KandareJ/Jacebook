@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-
 }
 
 .feed-body {
@@ -11,15 +10,15 @@
 }
 
 .new-content-header {
-  background-color: #f6f8fb;
+  background-color: #f3f5f6;
   padding: 5px;
   font-size: 10px;
   font-weight: lighter;
 }
 
 .thumbnail-image {
-  width: 40px;
-  border-radius: 20px;
+  width: 50px;
+  border-radius: 25px;
   margin: 10px;
 }
 
@@ -87,4 +86,13 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 5px;
+}
+
+.scrollable-content {
+  max-height: 93vh;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

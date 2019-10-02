@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
-import './LoginView.css'
+import './Login.css'
 
 export default class Footer extends Component {
   render() {

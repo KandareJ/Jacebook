@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper, faNetworkWired, faComments } from '@fortawesome/free-solid-svg-icons';
-import './LoginView.css'
+import './Login.css'
 
 export default class Header extends Component {
 

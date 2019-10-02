@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import CreateAccount from './CreateAccount';
 import Summary from './Summary';
-import './LoginView.css';
+import './Login.css';
 
 export default class Body extends Component {
   render() {

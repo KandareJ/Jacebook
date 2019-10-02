@@ -6,7 +6,7 @@ import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
 import './Profile.css';
 
-export default class Newsfeed extends Component {
+export default class Profile extends Component {
   render() {
     return(
       <div className="feed-body">

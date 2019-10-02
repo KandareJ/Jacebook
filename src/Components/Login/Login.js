@@ -3,7 +3,7 @@ import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
 
-export default class LoginView extends Component {
+export default class Login extends Component {
   render() {
     return (
       <div>

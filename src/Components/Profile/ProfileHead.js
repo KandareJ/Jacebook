@@ -15,15 +15,15 @@ export default class ProfileHead extends Component {
             <Card className="profile-head-card">
             <Grid container spacing={1}>
               <Grid item xs={3} >
-                <img className="profile-image" alt="prof pic" src="https://scontent-lax3-1.xx.fbcdn.net/v/t31.0-8/20229865_10213586156551604_8464216565975150589_o.jpg?_nc_cat=102&_nc_oc=AQlgXNJsxk9SXLcFjwKqPmypq4PgPZiIqxoBGbmVtUHkcdb6vX2K31OSds80oKlGSXg&_nc_ht=scontent-lax3-1.xx&oh=d13cce585230496816450947a5a7dc92&oe=5DF932A0" />
+                <img className="profile-image" alt="prof pic" src={this.props.photo} />
                 </Grid>
               <Grid item xs={9}>
                 <div className="profile-name-alias">
                   <div className="profile-name">
-                    Jace Kandare
+                    {this.props.name}
                   </div>
                   <div className="profile-alias">
-                    @JKandy
+                    @{this.props.alias}
                   </div>
                 </div>
                 <div className="float-bottom">

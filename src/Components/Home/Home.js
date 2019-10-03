@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Newsfeed from '../Newsfeed/Newsfeed';
 import Profile from '../Profile/Profile';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 export default class Home extends Component {
   render() {
@@ -10,12 +10,14 @@ export default class Home extends Component {
       <div>
         <Header />
         <Switch>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/">
+          <Route path="/profile/:alias" component={Profile} />/
+          <Route path="/feed">
             <Newsfeed />
           </Route>
+          <Route path="/">
+            <Redirect to={{pathname: '/feed'}} />
+          </Route>
+
         </Switch>
       </div>
     );

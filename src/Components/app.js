@@ -24,7 +24,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authToken: state.login.authToken
+    authToken: (state.login) ? state.login.authToken : ""
   };
 }
 

@@ -4,69 +4,41 @@ import Post from '../Post/Post';
 import NewPost from '../Newsfeed/NewPost';
 import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
+import { getProfile } from '../../Actions';
+import { connect } from 'react-redux';
 import './Profile.css';
 
-export default class Profile extends Component {
+class Profile extends Component {
+  //this.props.match.params.alias
+  componentDidMount() {
+    this.props.getProfile(this.props.match.params.alias);
+  }
+
+  componentDidUpdate(prevProps) {
+  if(this.props.match.params.alias !== prevProps.match.params.alias)
+  {
+    this.props.getProfile(this.props.match.params.alias);
+  }
+}
+
   render() {
     return(
       <div className="feed-body">
-        <ProfileHead />
+        <ProfileHead alias={this.props.alias} name={this.props.name} photo={this.props.photo} />
 
         <Grid container spacing={2}>
           <Grid item xs={2} />
           <Grid item xs={3}>
 
-            <PeopleList className="follows" header="I'm following" people={[
-              {
-                name: "Cassie O'Keeffe",
-                alias: "Casshole",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3"
-              },
-              {
-                name: "Michael Black",
-                alias: "FratBoiBlack",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQnGKZM_kFTgBLOt0Sxptj3Uj9zT-LsT32HDcs8UvHpT1ITObLbC_zmGWSiS7BPAK4A&_nc_ht=scontent-lax3-1.xx&oh=b1c92a25462f97e3a354cef3012da4d9&oe=5DFA6F2F"
-              },
-              {
-                name: "Cassie O'Keeffe",
-                alias: "Casshole",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3"
-              },
-              {
-                name: "Michael Black",
-                alias: "FratBoiBlack",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQnGKZM_kFTgBLOt0Sxptj3Uj9zT-LsT32HDcs8UvHpT1ITObLbC_zmGWSiS7BPAK4A&_nc_ht=scontent-lax3-1.xx&oh=b1c92a25462f97e3a354cef3012da4d9&oe=5DFA6F2F"
-              },
-              {
-                name: "Cassie O'Keeffe",
-                alias: "Casshole",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3"
-              },
-              {
-                name: "Michael Black",
-                alias: "FratBoiBlack",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQnGKZM_kFTgBLOt0Sxptj3Uj9zT-LsT32HDcs8UvHpT1ITObLbC_zmGWSiS7BPAK4A&_nc_ht=scontent-lax3-1.xx&oh=b1c92a25462f97e3a354cef3012da4d9&oe=5DFA6F2F"
-              },
-            ]} />
+            <PeopleList className="follows" header="Following" people={this.props.following}/>
             <br />
 
-            <PeopleList className="follows" header="Following Me" people={[
-              {
-                name: "Cassie O'Keeffe",
-                alias: "Casshole",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3"
-              },
-              {
-                name: "Michael Black",
-                alias: "FratBoiBlack",
-                photo: "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQnGKZM_kFTgBLOt0Sxptj3Uj9zT-LsT32HDcs8UvHpT1ITObLbC_zmGWSiS7BPAK4A&_nc_ht=scontent-lax3-1.xx&oh=b1c92a25462f97e3a354cef3012da4d9&oe=5DFA6F2F"
-              }
-            ]} />
+            <PeopleList className="follows" header="Followers" people={this.props.followers} />
 
           </Grid>
           <Grid item xs={5}>
             <div className="scrollable-content">
-              <NewPost />
+              <NewPost photo={this.props.photo} />
               <br />
               <Post
                 post={{
@@ -89,3 +61,16 @@ export default class Profile extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    alias: state.profile ? state.profile.alias : "",
+    name: state.profile ? state.profile.name : "",
+    photo: state.profile ? state.profile.photo : "",
+    posts: state.profile ? state.profile.posts : [],
+    following: state.profile ? state.profile.following : null,
+    followers: state.profile ? state.profile.followers : null
+  };
+}
+
+export default connect(mapStateToProps, { getProfile })(Profile);

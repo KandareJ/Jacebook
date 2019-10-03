@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faNewspaper, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
@@ -11,9 +12,15 @@ class HomeButtons extends Component {
     return(
       <div>
         <button onClick={this.props.logoutAction} className="logout-button menu-button">Logout</button>
-        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faUsers} />
-        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faNewspaper} />
-        <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faHome} />
+        <Link className="link-style" to={`/users`}>
+          <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faUsers} />
+        </Link>
+        <Link className="link-style" to={`/feed`}>
+          <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faNewspaper} />
+        </Link>
+        <Link className="link-style" to={`/profile/${this.props.alias}`}>
+          <FontAwesomeIcon className="menu-icon menu-button" size="1x" icon={faHome} />
+        </Link>
       </div>
     );
   }
@@ -21,6 +28,7 @@ class HomeButtons extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    alias: state.login.alias
   };
 }
 

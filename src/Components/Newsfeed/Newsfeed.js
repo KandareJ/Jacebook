@@ -16,7 +16,7 @@ export default class Newsfeed extends Component {
           </Grid>
           <Grid item xs={5}>
             <div className="scrollable-content">
-              <NewPost />
+              <NewPost photo="https://scontent-lax3-1.xx.fbcdn.net/v/t31.0-8/20229865_10213586156551604_8464216565975150589_o.jpg?_nc_cat=102&_nc_oc=AQlgXNJsxk9SXLcFjwKqPmypq4PgPZiIqxoBGbmVtUHkcdb6vX2K31OSds80oKlGSXg&_nc_ht=scontent-lax3-1.xx&oh=d13cce585230496816450947a5a7dc92&oe=5DF932A0" />
               <br />
               <Post
                 post={{
@@ -24,9 +24,9 @@ export default class Newsfeed extends Component {
                   alias: "BananaBoy",
                   name: "Norbert Martin",
                   media: "https://images.agoramedia.com/everydayhealth/gcms/All-About-Bananas-Nutrition-Facts-Health-Benefits-Recipes-and-More-RM-722x406.jpg",
-                  content: "Love me them #Bananas lol where that #MichaelBlackSpecial at? @FratBoiBlack",
+                  content: "Love me them #Bananas lol where that #MichaelBlackSpecial at? @j",
                   timestamp: "1:00 am",
-                  mentions: ["FratBoiBlack"],
+                  mentions: ["j"],
                   hashtags: ["Bananas", "MichaelBlackSpecial"]
                 }}
                 />

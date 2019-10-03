@@ -41,7 +41,6 @@ class LoginForm extends Component {
           <input className="form-input" type="password" value={this.state.password} onChange={this.onChange("password")} />
         </div>
         <button onClick={this.login} className="form-button">Log In</button>
-        {this.props.message && <div>{this.props.message}</div>}
       </form>
     );
   }
@@ -49,8 +48,8 @@ class LoginForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authToken: state.login.authToken,
-    message: state.login.message
+    authToken: state.login ? state.login.authToken : "",
+    message: state.login ? state.login.message : ""
   };
 }
 

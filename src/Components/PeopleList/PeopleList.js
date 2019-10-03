@@ -5,9 +5,17 @@ import './PeopleList.css';
 
 export default class PeopleList extends Component {
   makeList() {
-    return this.props.people.map((person) => {
-      return (<Person className={this.props.className} person={person}/>);
-    })
+    if(!this.props.people) {
+      return(<div>Loading...</div>)
+    }
+    else if (this.props.people.length < 1) {
+      return(<div>No users to show</div>)
+    }
+    else {
+      return this.props.people.map((person) => {
+        return (<Person className={this.props.className} key={person.alias} person={person}/>);
+      });
+    }
   }
 
   render() {

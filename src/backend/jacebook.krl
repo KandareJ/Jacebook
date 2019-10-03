@@ -1,6 +1,6 @@
 ruleset jacebook {
   meta {
-    shares __testing, login, getUsers, getPosts, getUserPosts, getAllFollowed
+    shares __testing, login, getUsers, getPosts, getUserPosts, getAllFollowed, getProfile, aliasToUser
   }
   global {
     __testing = { "queries": [ { "name": "__testing" },
@@ -8,6 +8,8 @@ ruleset jacebook {
                               {"name" : "getUsers"},
                               {"name" : "getPosts"},
                               {"name" : "getUserPosts", "args" : ["alias"]},
+                              {"name" : "aliasToUser", "args" : ["alias"]},
+                              {"name" : "getProfile", "args" : ["alias"]},
                               {"name" : "getAllFollowed", "args" : ["alias"]}
                               ],
                   "events": [
@@ -17,8 +19,8 @@ ruleset jacebook {
                     ] }
 
     login = function(alias, password) {
-      pass = (ent:users.get([alias, "password"])).klog("pass");
-      (pass == password) => {"authToken" : ent:users.get([alias, "authtoken"]), "message" : "Login Successful" } | {"authToken":"", "message" :"Invalid username or password"}
+      pass = (ent:users.get([alias, "password"]));
+      (pass == password) => {"authToken" : ent:users.get([alias, "authtoken"]), "message" : "Login Successful" } | {"authToken":"", "message" :"Invalid username or password."}
     }
 
     getUsers = function() {
@@ -27,6 +29,29 @@ ruleset jacebook {
 
     getPosts = function() {
       ent:posts
+    }
+
+
+
+    getProfile = function(alias) {
+      user = ent:users.get([alias]);
+      {
+        "alias" : alias,
+        "name" : user.get(["firstName"]) + " " + user.get(["lastName"]),
+        "photo" : user.get(["photo"]),
+        "posts" :user.get(["posts"]),
+        "following" : user.get(["imFollowing"]).map(aliasToUser),
+        "followers" : user.get(["myFollowers"]).map(aliasToUser)
+      }
+    }
+
+    aliasToUser = function(alias) {
+      user = ent:users.get([alias]);
+      {
+        "name" : user.get(["firstName"]) + " " + user.get(["lastName"]),
+        "alias" : alias,
+        "photo" : user.get(["photo"])
+      }
     }
 
     getUserPosts = function(alias) {
@@ -55,7 +80,7 @@ ruleset jacebook {
       firstName = event:attr("firstName");
       lastName = event:attr("lastName");
       token = random:uuid();
-      photo = "photo";
+      photo = "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3";
       map = {
             "password" : password,
             "firstName" : firstName,
@@ -99,7 +124,7 @@ ruleset jacebook {
     }
 
     if (alias && password && firstName && lastName && token && photo && ent:users.get([alias]) != null) then
-    send_directive("login_status", {"message" : "account taken", "authToken" : ""});
+    send_directive("login_status", {"message" : "That alias is taken. Please try a different one.", "authToken" : ""});
 
   }
 

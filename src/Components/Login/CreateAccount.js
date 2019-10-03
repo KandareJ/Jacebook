@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createAccount } from '../../Actions';
 import './Login.css'
 
-export default class CreateAccount extends Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +15,7 @@ export default class CreateAccount extends Component {
       image: "",
     }
     this.onUpload = this.onUpload.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   onChange(key) {
@@ -36,8 +39,10 @@ export default class CreateAccount extends Component {
   console.log("image added");
   }
 
-  subimt() {
-    
+  submit(e) {
+    e.preventDefault();
+    this.props.createAccount(this.state.alias, this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword);
+
   }
 
   render() {
@@ -64,9 +69,9 @@ export default class CreateAccount extends Component {
             <input className="create-account-input-file" type="file" name="pic" accept="image/*" value={this.state.image} onChange={this.onUpload} />
           </div>
           <div>
-            {this.state.image && <img src={this.state.image} />}
             <p className="privacy-policy">By clicking sign up you agree to our data policy, which may or may not include selling your information to various companies and governments.</p>
             <button onClick={this.submit} className="sign-up">Sign Up</button>
+              {this.props.message && <div className="error-message">{this.props.message}</div>}
           </div>
         </form>
         <hr align="left" className="horizontal-rule" />
@@ -75,3 +80,12 @@ export default class CreateAccount extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    authToken: state.login ? state.login.authToken : "",
+    message: state.login ? state.login.message : ""
+  };
+}
+
+export default connect(mapStateToProps, { createAccount })(CreateAccount);

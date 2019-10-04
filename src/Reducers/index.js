@@ -1,5 +1,19 @@
 import { combineReducers } from 'redux';
 
+const getNewsFeedReducer = (last = null, action) => {
+  if (action.type === "GET_NEWS_FEED") {
+    return action.payload;
+  }
+  else return last;
+}
+
+const getPostListReducer = (last=null, action) => {
+  if (action.type ==="GET_POST_LIST") {
+    return action.payload;
+  }
+  else return last;
+}
+
 const loginReducer = (last=null, action) => {
   if (action.type === "USER_LOGIN" || action.type === "USER_SIGNUP") {
     return action.payload;
@@ -9,7 +23,8 @@ const loginReducer = (last=null, action) => {
     return {
       authToken: "",
       message: "",
-      alias: ""
+      alias: "",
+      photo: ""
     }
   }
 
@@ -27,5 +42,7 @@ const getProfileReducers = (last=null, action) => {
 
 export default combineReducers({
   login: loginReducer,
-  profile: getProfileReducers
+  profile: getProfileReducers,
+  posts: getPostListReducer,
+  feed: getNewsFeedReducer
 })

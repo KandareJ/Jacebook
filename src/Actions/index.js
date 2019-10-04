@@ -1,8 +1,46 @@
 import axios from 'axios';
 
+export const getNewsFeedAction = (alias) => {
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getAllFollowed?alias=${alias}`;
+  console.log("In getNewsFeedAction");
+    return function (dispatch) {
+      axios.get(url).then((resp) => {
+        dispatch({
+            type: "GET_NEWS_FEED",
+            payload: resp.data
+          });
+      })
+    };
+}
+
+export const getPostListAction = (list) => {
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getPostsFromArray?${encode(list, "ids")}`;
+    return function (dispatch) {
+      axios.get(url).then((resp) => {
+        dispatch({
+            type: "GET_POST_LIST",
+            payload: resp.data
+          });
+      })
+    };
+};
+
+const encode = (ids, name) => {
+  let encoded = "";
+
+  if(ids === undefined || ids === null) return encoded;
+  ids.map((x, i) => {
+    encoded += (name + "[" + i + "]=");
+    encoded += x;
+    if (i < ids.length - 1) encoded += "&";
+    return "";
+  });
+
+  return encoded;
+}
+
 export const getProfile = (alias) => {
-  console.log("in action", alias);
-  let url = `http://localhost:8080/sky/cloud/Gzi7Kar67Ht3xVsppjscvL/jacebook/getProfile?alias=${alias}`;
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getProfile?alias=${alias}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -14,7 +52,7 @@ export const getProfile = (alias) => {
 };
 
 export const loginAction = (alias, password) => {
-  let url = `http://localhost:8080/sky/cloud/Gzi7Kar67Ht3xVsppjscvL/jacebook/login?alias=${alias}&password=${password}`;
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/login?alias=${alias}&password=${password}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -22,7 +60,8 @@ export const loginAction = (alias, password) => {
             payload: {
               authToken: resp.data.authToken,
               message: resp.data.message,
-              alias
+              alias,
+              photo: resp.data.photo
             }
           });
       })
@@ -61,15 +100,15 @@ export const createAccount = (alias, firstName, lastName, password, confirmPassw
   }
 
   //all fields filled and passwords match
-  let url = `http://localhost:8080/sky/event/Gzi7Kar67Ht3xVsppjscvL/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}`;
+  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}`;
     return function (dispatch) {
-      axios.get(url).then((resp) => {
-        console.log(resp.data.directives[0]);
+      axios.post(url).then((resp) => {
         dispatch({
             type: "USER_SIGNUP",
             payload: {
               authToken: resp.data.directives[0].options.authToken,
               message: resp.data.directives[0].options.message,
+              photo: resp.data.directives[0].options.photo,
               alias
             }
           });

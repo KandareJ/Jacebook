@@ -4,12 +4,15 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Mention from '../Mention/Mention';
 import Hashtag from '../Hashtag/Hashtag';
+import { Link } from 'react-router-dom';
 import './Post.css';
 
 export default class Post extends Component {
   convertContent(content) {
     let toRet = [""];
     var j = 0;
+
+    if(content === null || content.length < 1) return "";
 
     for (var i = 0; i < content.length; i++){
       if(content[i] === '#') {
@@ -60,17 +63,20 @@ export default class Post extends Component {
 
   render() {
     return(
+      <div className="post">
         <Card>
           <div className="post-header">
             <Grid container spacing={1}>
               <Grid item xs={2} >
-                <img className="post-thumbnail-image" alt="prof pic" src={this.props.post.prof} />
-                </Grid>
+                {this.props.post.photo && <img className="post-thumbnail-image" alt="prof pic" src={this.props.post.photo} />}
+              </Grid>
               <Grid item xs={10}>
+                <Link className="link-style" to={`/profile/${this.props.post.alias}`} >
                 <div className="post-title">
                   <div className="name-alias-inline"><div className="post-name">{this.props.post.name}</div><div className="post-alias">@{this.props.post.alias}</div></div>
                   <div className="post-time">{this.props.post.timestamp}</div>
                 </div>
+                </Link>
               </Grid>
             </Grid>
           </div>
@@ -78,16 +84,14 @@ export default class Post extends Component {
           <CardContent>
             {this.convertContent(this.props.post.content)}
           </CardContent>
-          <img
-            src={this.props.post.media}
-            alt="Paella dish"
-            className="media"
-          />
+          {this.props.post.image && <img src={this.props.post.image} alt="Accompanying media" className="media"/>}
+          {this.props.post.video && <div>video</div>}
           <div className="mentions-hashtags-margins">
             {this.props.post.hashtags && this.showHashtags()}
             {this.props.post.mentions && this.showMentions()}
           </div>
         </Card>
+        </div>
     );
   }
 }

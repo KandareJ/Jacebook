@@ -1,17 +1,22 @@
 import axios from 'axios';
 
-export const makePost = (alias, content) => {
-  let url = `http://localhost:8080/sky/event/Gzi7Kar67Ht3xVsppjscvL/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}`;
-
+export const makePost = (alias, content, callback) => {
+  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/post/post/create`;
+  if(content === null || content.length < 1) return;
   let hashtags = getHashtags(content);
   let mentions = getMentions(content);
   let urls = getURLs(content);
 
-  axios.get(url).then((resp) => {
-    dispatch({
-        type: "GET_PROFILE",
-        payload: resp.data
-      });
+  let body = {
+    alias,
+    content,
+    hashtags,
+    mentions,
+    urls,
+  }
+
+  axios.post(url, body).then((resp) => {
+    callback();
   })
 }
 
@@ -19,7 +24,7 @@ const getHashtags = (content) => {
   return extract(content, '#');
 }
 
-const mentions = (content) => {
+const getMentions = (content) => {
   return extract(content, '@');
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import SideMenu from '../SideMenu/SideMenu';
+import ProfileButtons from '../ProfileButtons/ProfileButtons';
 import './Profile.css';
 
 export default class ProfileHead extends Component {
@@ -27,7 +27,7 @@ export default class ProfileHead extends Component {
                   </div>
                 </div>
                 <div className="float-bottom">
-                  <SideMenu className="list-horizontal-display" />
+                  <ProfileButtons className="list-horizontal-display" />
                 </div>
               </Grid>
             </Grid>

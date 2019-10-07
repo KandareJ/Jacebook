@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faNewspaper, faUsers, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { logoutAction } from '../../Actions';
+import { logoutAction } from '../../Actions/LoginAction';
 import './Home.css';
 
 class HomeButtons extends Component {

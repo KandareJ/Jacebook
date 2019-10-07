@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostListAction } from '../../Actions';
+import { getPostListAction } from '../../Actions/FeedAction';
 import Post from '../Post/Post';
 
 class PostList extends Component {
@@ -11,12 +11,12 @@ class PostList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.posts.length > 0) this.props.getPostListAction(this.props.posts);
+    /*if (this.props.posts.length > 0)*/ this.props.getPostListAction(this.props.posts);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.posts.length !== prevProps.posts.length || this.props.alias !== prevProps.alias) {
-      if (this.props.posts.length > 0) this.props.getPostListAction(this.props.posts);
+      /*if (this.props.posts.length > 0)*/ this.props.getPostListAction(this.props.posts);
     }
     else if (this.props.difCheck && !this.compareArrays(this.props.posts, prevProps.posts)) {
       this.props.getPostListAction(this.props.posts);

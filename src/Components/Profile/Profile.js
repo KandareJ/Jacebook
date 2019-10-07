@@ -4,7 +4,7 @@ import PostList from '../PostList/PostList';
 import NewPost from '../Newsfeed/NewPost';
 import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
-import { getProfile } from '../../Actions';
+import { getProfile } from '../../Actions/ProfileAction';
 import { connect } from 'react-redux';
 import './Profile.css';
 

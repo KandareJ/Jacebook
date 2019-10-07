@@ -4,7 +4,7 @@ import PostList from '../PostList/PostList';
 import NewPost from './NewPost';
 import SideMenu from '../SideMenu/SideMenu';
 import { connect } from 'react-redux';
-import { getNewsFeedAction } from '../../Actions';
+import { getNewsFeedAction } from '../../Actions/FeedAction';
 import './NewsFeed.css';
 
 class Newsfeed extends Component {

@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { connect } from 'react-redux';
 import { follow, unfollow } from '../../Actions/Follow';
-import { getProfile } from '../../Actions';
+import { getProfile } from '../../Actions/ProfileAction';
 import './ProfileButton.css';
 
 class ProfileButtons extends Component {

@@ -44,7 +44,7 @@ ruleset jacebook {
     }
 
     getPostsFromArray = function(ids) {
-      ids.klog("props");
+      (ids.length() > 0) =>
       ids.map(function(x) {
         post = ent:posts.filter(function(y) {
           (y.values()[0]).get(["id"]) == x;
@@ -63,7 +63,7 @@ ruleset jacebook {
           "id" : x
         }
 
-      })
+      }) | []
     }
 
     getHashtag = function(tag) {
@@ -243,7 +243,7 @@ ruleset jacebook {
     select when fake store
     pre {
       users = {
-  "Casshole": {
+  "CassO": {
     "password": "123",
     "firstName": "Cassie",
     "lastName": "OKeeffe",
@@ -331,7 +331,7 @@ posts = [
     }
   },
   {
-    "Casshole": {
+    "CassO": {
       "content": "@JKandy is so hot",
       "id": "ck1c57rf10019q4tot2nwtpso",
       "photo": "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3",
@@ -347,7 +347,7 @@ posts = [
     }
   },
   {
-    "Casshole": {
+    "CassO": {
       "content": "Dancing really isn't that cool.",
       "id": "ck1c58a0s001fq4tomb3hdpbw",
       "photo": "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3",
@@ -366,7 +366,7 @@ posts = [
       "id": "ck1c58vnl001oq4toecomxuna",
       "photo": "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQkmkIarEEsE0HPDzpUTiH1T-mEXZ0z3gOBmx7kuZ5U51Bd15V-R5NTwpCAefnD_4DM&_nc_ht=scontent-sea1-1.xx&oh=5df71708256fe8eaca9ba1c65eb1e288&oe=5E21FC2F",
       "name": "Michael Black",
-      "image": "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/61039027_10219674866649006_8965868170271260672_n.jpg?_nc_cat=100&_nc_oc=AQnStRAvIHI0BK41NW_hqZzRrmcMNslR-8GoM6qj2OMSPK8l4wNStoiS3A7nqbEZwAY&_nc_ht=scontent-sea1-1.xx&oh=2dd6443cb444e2fc1f214399624903c3&oe=5E39DEA1",
+      "image": null,
       "video": null,
       "urls": [],
       "hashtags": [],
@@ -376,14 +376,14 @@ posts = [
   },
   {
     "FratBoiBlack": {
-      "content": "@WannabeBruce AYYYYYYYOOOOOO",
+      "content": "@WannabeBruce AYYYYYYYOOOOOO #AYYOOO",
       "id": "ck1c598kz001uq4toiqvtwc1u",
       "photo": "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQkmkIarEEsE0HPDzpUTiH1T-mEXZ0z3gOBmx7kuZ5U51Bd15V-R5NTwpCAefnD_4DM&_nc_ht=scontent-sea1-1.xx&oh=5df71708256fe8eaca9ba1c65eb1e288&oe=5E21FC2F",
       "name": "Michael Black",
       "image": null,
       "video": null,
       "urls": [],
-      "hashtags": [],
+      "hashtags": ["AYYOOO"],
       "mentions": [
         "WannabeBruce"
       ],
@@ -392,7 +392,7 @@ posts = [
   },
   {
     "FratBoiBlack": {
-      "content": "Where them white women at? #AYYOOO",
+      "content": "Where them ladies at? #AYYOOO",
       "id": "ck1c59oz90020q4toz5itk791",
       "photo": "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/38448873_1953444824714622_5916553050671022080_n.jpg?_nc_cat=105&_nc_oc=AQkmkIarEEsE0HPDzpUTiH1T-mEXZ0z3gOBmx7kuZ5U51Bd15V-R5NTwpCAefnD_4DM&_nc_ht=scontent-sea1-1.xx&oh=5df71708256fe8eaca9ba1c65eb1e288&oe=5E21FC2F",
       "name": "Michael Black",
@@ -430,7 +430,7 @@ hashtags = ["picos","AYYOOO"];
     always {
       ent:users := users;
       ent:posts := posts;
-      ent:mentions := hashtags;
+      ent:hashtags := hashtags;
     }
   }
 

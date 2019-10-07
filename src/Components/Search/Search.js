@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { getSearch } from '../../Actions';
+import { getSearch } from '../../Actions/SearchAction';
 import { connect } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

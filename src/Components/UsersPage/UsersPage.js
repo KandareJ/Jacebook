@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getProfile } from '../../Actions';
+import { getProfile } from '../../Actions/ProfileAction';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import SideMenu from '../SideMenu/SideMenu';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getHashTagAction } from '../../Actions';
+import { getHashTagAction } from '../../Actions/HashtagAction';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import SideMenu from '../SideMenu/SideMenu';

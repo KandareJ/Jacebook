@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { Grid } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Mention from '../Mention/Mention';
 import Hashtag from '../Hashtag/Hashtag';
 import { Link } from 'react-router-dom';
+
 import './Post.css';
 
 export default class Post extends Component {
@@ -12,7 +15,7 @@ export default class Post extends Component {
     let toRet = [""];
     var j = 0;
 
-    if(content === null || content.length < 1) return "";
+    if(!content || content.length < 1) return "";
 
     for (var i = 0; i < content.length; i++){
       if(content[i] === '#') {
@@ -89,6 +92,7 @@ export default class Post extends Component {
           <div className="mentions-hashtags-margins">
             {this.props.post.hashtags && this.showHashtags()}
             {this.props.post.mentions && this.showMentions()}
+            <Link className="link-style" style={{float:"right"}} to={`/post/${this.props.post.id}`}><FontAwesomeIcon className="side-menu-icon" size="1x" icon={faEye} /></Link>
           </div>
         </Card>
         </div>

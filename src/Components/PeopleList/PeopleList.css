@@ -10,3 +10,7 @@
   flex-flow: row wrap;
   justify-content: space-around;
 }
+
+.small-link {
+  font-size: 10px;
+}

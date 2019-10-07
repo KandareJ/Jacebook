@@ -15,9 +15,23 @@ class PostList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.posts.length !== prevProps.posts.length) {
+    if (this.props.posts.length !== prevProps.posts.length || this.props.alias !== prevProps.alias) {
       if (this.props.posts.length > 0) this.props.getPostListAction(this.props.posts);
     }
+    else if (this.props.difCheck && !this.compareArrays(this.props.posts, prevProps.posts)) {
+      this.props.getPostListAction(this.props.posts);
+    }
+
+  }
+
+  compareArrays(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+
+    for(var i = 0; i < arr1.length; i++) {
+      if(arr1[i] !== arr2[i]) return false;
+    }
+
+    return true;
   }
 
   renderPosts() {

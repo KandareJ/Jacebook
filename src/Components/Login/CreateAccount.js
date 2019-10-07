@@ -12,7 +12,7 @@ class CreateAccount extends Component {
       lastName: "",
       password: "",
       confirmPassword: "",
-      image: "",
+      image: ""
     }
     this.onUpload = this.onUpload.bind(this);
     this.submit = this.submit.bind(this);
@@ -25,23 +25,14 @@ class CreateAccount extends Component {
   }
 
   onUpload(e) {
-  //   const updateImage = (newImage) => {
-  //     this.setState(newImage);
-  //   }
-  //   var reader = new FileReader();
-  //   reader.onload = function() {
-  //     var arrayBuffer = this.result,
-  //       array = new Uint8Array(arrayBuffer),
-  //       binaryString = String.fromCharCode.apply(null, array);
-  //     updateImage({ image: btoa(binaryString) });
-  // }
-  // reader.readAsArrayBuffer(e.target.files[0]);
-  console.log("image added");
+    if(e.target.files[0]) this.setState({
+      image: URL.createObjectURL(e.target.files[0])
+    });
   }
 
   submit(e) {
     e.preventDefault();
-    this.props.createAccount(this.state.alias, this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword);
+    this.props.createAccount(this.state.alias, this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword, this.state.image);
 
   }
 
@@ -66,7 +57,7 @@ class CreateAccount extends Component {
           </div>
           <div className="form-inline create-account-input-file-space">
             <p className="create-account-header">Upload an Image:</p>
-            <input className="create-account-input-file" type="file" name="pic" accept="image/*" value={this.state.image} onChange={this.onUpload} />
+            <input className="create-account-input-file" type="file" name="pic" accept="image/*" onChange={this.onUpload} />
           </div>
           <div>
             <p className="privacy-policy">By clicking sign up you agree to our data policy, which may or may not include selling your information to various companies and governments.</p>

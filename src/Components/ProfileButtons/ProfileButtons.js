@@ -56,10 +56,14 @@ class ProfileButtons extends Component {
             </ListItem>
           }
 
+          <input className="add-media-hidden" id="editImage" type="file" name="media" accept="image/*" />
+
           { this.props.isMe &&
+          <label htmlFor="editImage" className="button-inline">
             <ListItem className="profile-button" button>
               <div className="side-menu-text">Edit Profile pic</div>
             </ListItem>
+          </label>
           }
 
       </List>

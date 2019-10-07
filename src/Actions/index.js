@@ -1,8 +1,31 @@
 import axios from 'axios';
 
+export const getSearch = () => {
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getSearch`;
+    return function (dispatch) {
+      axios.get(url).then((resp) => {
+        dispatch({
+            type: "GET_SEARCH",
+            payload: resp.data
+          });
+      })
+    };
+}
+
+export const getHashTagAction = (tag) => {
+  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getHashtag?tag=${tag}`;
+    return function (dispatch) {
+      axios.get(url).then((resp) => {
+        dispatch({
+            type: "GET_HASHTAG",
+            payload: resp.data
+          });
+      })
+    };
+}
+
 export const getNewsFeedAction = (alias) => {
   let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getAllFollowed?alias=${alias}`;
-  console.log("In getNewsFeedAction");
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -74,9 +97,9 @@ export const logoutAction = () => {
   }
 }
 
-export const createAccount = (alias, firstName, lastName, password, confirmPassword) => {
+export const createAccount = (alias, firstName, lastName, password, confirmPassword, image) => {
   //confirm all fields are filled in
-  if (!firstName || !lastName || !password || !confirmPassword || !alias) {
+  if (!firstName || !lastName || !password || !confirmPassword || !alias || !image) {
     return {
       type: "USER_SIGNUP",
       payload: {
@@ -100,7 +123,7 @@ export const createAccount = (alias, firstName, lastName, password, confirmPassw
   }
 
   //all fields filled and passwords match
-  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}`;
+  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}&photo=${image}`;
     return function (dispatch) {
       axios.post(url).then((resp) => {
         dispatch({

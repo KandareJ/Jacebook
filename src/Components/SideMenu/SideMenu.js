@@ -25,14 +25,14 @@ class SideMenu extends Component {
           </ListItem>
         </Link>
 
-        <Link className="link-style" to="/users">
+        <Link className="link-style" to={`/followers/${this.props.alias}`}>
           <ListItem button>
             <FontAwesomeIcon className="side-menu-icon" size="1x" icon={faUsers} />
             <div className="side-menu-text">My Followers</div>
           </ListItem>
         </Link>
 
-        <Link className="link-style" to="/users">
+        <Link className="link-style" to={`/following/${this.props.alias}`}>
           <ListItem button>
             <FontAwesomeIcon className="side-menu-icon" size="1x" icon={faUserFriends} />
             <div className="side-menu-text">I'm Following</div>

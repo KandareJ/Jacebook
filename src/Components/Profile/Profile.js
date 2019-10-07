@@ -29,15 +29,15 @@ class Profile extends Component {
           <Grid item xs={2} />
 
           <Grid item xs={3}>
-            <PeopleList className="follows" header="Following" people={this.props.following}/>
+            <PeopleList className="follows" header="Following" people={this.props.following} max={6}/>
             <br />
-            <PeopleList className="follows" header="Followers" people={this.props.followers} />
+            <PeopleList className="follows" header="Followers" people={this.props.followers} max={6} />
           </Grid>
 
           <Grid item xs={5}>
             <div className="scrollable-content">
-              <NewPost updateList={this.props.getProfile} />
-              <PostList posts={this.props.posts} / >
+              {this.props.isMe && <NewPost updateList={this.props.getProfile} />}
+              <PostList posts={this.props.posts} alias={this.props.alias} / >
             </div>
           </Grid>
 
@@ -49,13 +49,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  let isMe = (state.login && state.profile && state.login.alias === state.profile.alias);
   return {
     alias: state.profile ? state.profile.alias : "",
     name: state.profile ? state.profile.name : "",
     photo: state.profile ? state.profile.photo : "",
     posts: state.profile ? state.profile.posts : [],
     following: state.profile ? state.profile.following : null,
-    followers: state.profile ? state.profile.followers : null
+    followers: state.profile ? state.profile.followers : null,
+    isMe
   };
 }
 

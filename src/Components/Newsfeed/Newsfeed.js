@@ -12,7 +12,6 @@ class Newsfeed extends Component {
     if(this.props.alias) this.props.getNewsFeedAction(this.props.alias);
   }
   render() {
-    console.log("feed", this.props.feed)
     return(
       <div className="feed-body">
         <Grid container spacing={3}>
@@ -23,7 +22,7 @@ class Newsfeed extends Component {
           <Grid item xs={5}>
             <div className="scrollable-content">
               <NewPost updateList={this.props.getNewsFeedAction} />
-              <PostList posts={this.props.feed} />
+              <PostList posts={this.props.feed} alias={this.props.alias} />
             </div>
           </Grid>
           <Grid item xs={3}>

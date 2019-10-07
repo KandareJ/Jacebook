@@ -1,5 +1,19 @@
 import { combineReducers } from 'redux';
 
+const getSearchReducer = (last = null, action) => {
+  if (action.type === "GET_SEARCH") {
+    return action.payload;
+  }
+  else return last;
+}
+
+const getHashtagsReducer = (last = null, action) => {
+  if (action.type === "GET_HASHTAG") {
+    return action.payload;
+  }
+  else return last;
+}
+
 const getNewsFeedReducer = (last = null, action) => {
   if (action.type === "GET_NEWS_FEED") {
     return action.payload;
@@ -8,7 +22,7 @@ const getNewsFeedReducer = (last = null, action) => {
 }
 
 const getPostListReducer = (last=null, action) => {
-  if (action.type ==="GET_POST_LIST") {
+  if (action.type === "GET_POST_LIST") {
     return action.payload;
   }
   else return last;
@@ -44,5 +58,7 @@ export default combineReducers({
   login: loginReducer,
   profile: getProfileReducers,
   posts: getPostListReducer,
-  feed: getNewsFeedReducer
+  feed: getNewsFeedReducer,
+  tags: getHashtagsReducer,
+  search: getSearchReducer
 })

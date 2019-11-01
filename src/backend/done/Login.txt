@@ -1,0 +1,4 @@
+I will be writing my own hashing and salting algorithm.
+When an account is created, a random string will be appended to the end of the password they entered. This "salted" string will then be hashed. The random string will be stored in the database along with the hashed password string keyed to their username.
+When a user attempts to sign in, the hashed and salted password in the database will be un-hashed and un-salted using the salt stored in the database. The password they provide will then be compared to the unsalted and unhashed password. If they match, the backend will create an auth token that will expire after a certain period of time.
+Any time the user tries to make an api call that requires authentication, the back end will verify that the auth token has not ex

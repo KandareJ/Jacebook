@@ -1,0 +1,36 @@
+Name: Follow User
+
+METHOD: POST
+
+URL: /follow/:username/
+
+Description: The signed-in user follows another user.
+
+The user to be followed is passed in the url.
+
+:username is the alias of the user we want to follow.
+
+AUTHENTICATED:  Yes
+
+REQUEST HEADERS: authToken
+
+REQUEST BODY:  Empty
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "message" : "<signed-in user> followed <user>"
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "You are not authenticated. Please sign back in"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "<user> is not a valid user"
+}

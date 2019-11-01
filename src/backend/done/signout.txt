@@ -1,0 +1,29 @@
+Name: Sign in to an account
+METHOD: POST
+URL: /accounts/signout
+Description: This signs the user out of the page.
+
+This api call will cause the authToken to expire so the user will need to sign back in to
+
+the authToken that needs to expire will be included in the request headers.
+
+AUTHENTICATED:  Yes
+REQUEST HEADERS: authToken
+REQUEST BODY:  Empty
+RESPONSE HEADERS: None
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "message": "Logout Successful"
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "You are already signed out"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message": "Invalid username or password."
+}

@@ -1,0 +1,42 @@
+Name: Create Post
+
+METHOD: POST
+
+URL: /posts/create
+
+Description: Creates a new post.
+The request body holds the text content of the post, multimedia objects, an array of hashtags, an array of mentions, and an array of urls
+
+AUTHENTICATED:  Yes
+
+REQUEST HEADERS: authToken
+
+REQUEST BODY:
+{
+  "alias" : <alias>,
+  "content": <content>,
+  "firstName": <first name>,
+  "lastName" : <last name>,
+  "urls": [ ... ],
+  "hashtags": [ ... ],
+  "mentions": [ ... ],
+}
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "message" : "post made!"
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "You are not authenticated. Please sign back in to make a post."
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "Please fill in the required fields to make a post"
+}

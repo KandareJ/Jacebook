@@ -1,0 +1,34 @@
+Name: Sign up a user
+METHOD: POST
+URL: /accounts/signup
+Description: The user creates an account by filling in the required information.
+The body of this request will hold the alias, password, email, first name, last name, and the profile picture
+AUTHENTICATED:  No
+REQUEST HEADERS: None
+REQUEST BODY:
+{
+	“alias”			: <alias>,
+	“passsword"	: <password>,
+  "firstName"	: <first name>,
+	"lastName"	: <last name>,
+	"photo"			:	<photo>
+}
+
+RESPONSE HEADERS: None
+RESPONSE BODY:
+
+200: A JSON string containing an array of followers with the following format:
+{
+	"message"		: "account created",
+  "authToken"	: <UUID, something like "ck1thmxhh000e2gtoq0a24vmo">
+}
+
+400: A JSON string containing error information with the following format:
+{
+	"message" : "That alias has already been taken. Please try another."
+}
+
+500: A JSON string containing error information with the following format:
+{
+	"message" : "Please fill in all required fields"
+}

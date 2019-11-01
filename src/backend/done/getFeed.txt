@@ -1,0 +1,50 @@
+Name: Get Feed
+
+METHOD: GET
+
+URL: /feed/:username?lastpost=aabbcc&pagesize=20
+
+Description: Returns a page of posts for a user
+
+The :username parameter specifies the alias of the user we want followers for.
+
+The lastpost parameter ensures that only results that are after the cursor (lastpost) will be returned.  This is typically the key of the last item returned in the previous page.  If lastpost is not specified, the first page of posts is returned.
+
+The pagesize parameter specifies the maximum number of posts to return (but it might return less).  If pagesize is not specified, it defaults to 15.
+
+AUTHENTICATED:  No
+
+REQUEST HEADERS: None
+
+REQUEST BODY:  Empty
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+[
+    {
+      "alias" : <alias>,
+      "content": <content>,
+      "id": <id>,
+      "photo": <photo>,
+      "firstName": <first name>,
+      "lastName": <last name>,
+      "urls": [...],
+      "hashtags": [...],
+      "mentions": [...],
+      "timestamp": <time>
+    },
+    ...
+]
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "Please include the alias of the user to get their posts"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "<user> is not a valid user"
+}

@@ -1,0 +1,41 @@
+Name: Get User Followers
+METHOD: GET
+URL: /users/:username/followers?lastfollower=aabbcc&pagesize=10
+Description: Returns a page of followers for a user
+
+The :username parameter specifies the alias of the user we want followers for.
+
+The lastfollower parameter ensures that only results that are after the cursor (lastfollower) will be returned.  This is typically the key of the last item returned in the previous page.  If lastkey is not specified, the first page of followers is returned.
+
+The pagesize parameter specifies the maximum number of followers to return (but it might return less).  If pagesize is not specified, it defaults to 25.
+
+AUTHENTICATED:  No
+REQUEST HEADERS: None
+REQUEST BODY:  Empty
+RESPONSE HEADERS: None
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+[
+
+{
+    "alias" : "CassO"
+    "password": "123",
+    "firstName": "Cassie",
+    "lastName": "OKeeffe",
+    "authtoken": "ck1c577n10011q4tobrqzlak6",
+    "photo": "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/57155037_100264351180970_1432501369947815936_n.jpg?_nc_cat=103&_nc_oc=AQnfDYARPsez5H0f4c4HJijK7XuvlTpKItfaSda28HYtFlsHQAduNJijZs27yLjUD0M&_nc_ht=scontent-lax3-1.xx&oh=e0ef84c1608f8546367184983f8305f9&oe=5E2C44C3"
+},
+
+...
+]
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "Please include the alias of the user to get their followers"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "<user> is not a valid user"
+}

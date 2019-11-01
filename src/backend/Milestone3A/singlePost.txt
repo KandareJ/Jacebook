@@ -1,0 +1,43 @@
+Name: Get Single Post
+
+METHOD: GET
+
+URL: /singlepost/:postID
+
+Description: Returns a single post to be viewed
+
+The :postID parameter specifies the id of the post we want to view separately
+
+AUTHENTICATED:  No
+
+REQUEST HEADERS: None
+
+REQUEST BODY:  Empty
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "alias" : <alias>,
+  "content": <content>,
+  "id": <id>,
+  "photo": <photo>,
+  "firstName": <first name>,
+  "lastName": <last name>,
+  "urls": [...],
+  "hashtags": [...],
+  "mentions": [...],
+  "timestamp": <time>
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "Please include the post id"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "Invalid post id"
+}

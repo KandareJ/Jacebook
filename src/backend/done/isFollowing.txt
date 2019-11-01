@@ -1,0 +1,36 @@
+Name: Follow User
+
+METHOD: GET
+
+URL: /isFollowing/:username/
+
+Description: The backend is queried to see if it a user is currently being followed by the signed-in user or not
+
+:username is the alias of the user we want to know if we're following.
+
+The signed-in user's auth token is passed in the request headers.
+
+AUTHENTICATED:  Yes
+
+REQUEST HEADERS: authToken
+
+REQUEST BODY:  Empty
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "isFollowing" : true || false
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "You are not authenticated. Please sign back in"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "<user> is not a valid user"
+}

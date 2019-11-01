@@ -1,0 +1,35 @@
+Name: Search
+
+METHOD: GET
+
+URL: /search?term=<search_term>
+
+Description: Returns a list of aliases and hashtags that match the search term
+
+the "term" query parameter is the term that needs to be searched
+
+AUTHENTICATED:  No
+
+REQUEST HEADERS: None
+
+REQUEST BODY:  Empty
+
+RESPONSE HEADERS: None
+
+RESPONSE BODY:
+
+200: A JSON string  containing an array of followers with the following format:
+{
+  "alias" : [ ... ],
+  "hashtags" : [ ... ]
+}
+
+400: A JSON string containing error information with the following format:
+{
+  "message" : "Please include a search term longer than 2 characters"
+}
+
+500: A JSON string containing error information with the following format:
+{
+  "message" : "There are no matching search results"
+}

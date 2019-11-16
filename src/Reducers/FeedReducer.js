@@ -6,8 +6,18 @@ export const getNewsFeedReducer = (last = null, action) => {
 }
 
 export const getPostListReducer = (last=null, action) => {
-  if (action.type === "GET_POST_LIST") {
+  if (action.type === "GET_POST_LIST" || action.type === "GET_HASHTAG") {
+    return action.payload.posts;
+  }
+  if (action.type === "ADD_POST_LIST") {
+    if (last !== null) return last.concat(action.payload.posts);
+    else return last;
+  }
+  if(action.type === "SINGLE_POST") {
     return action.payload;
+  }
+  if(action.type === "GET_PROFILE") {
+    return action.payload.story
   }
   else return last;
 }

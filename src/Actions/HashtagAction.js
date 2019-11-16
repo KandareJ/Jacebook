@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 export const getHashTagAction = (tag) => {
-  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getHashtag?tag=${tag}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/hashtags/${tag}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
+        console.log("HASHTAG_ACTION", resp.data);
         dispatch({
             type: "GET_HASHTAG",
             payload: resp.data

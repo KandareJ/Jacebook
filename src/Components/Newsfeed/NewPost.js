@@ -20,7 +20,8 @@ class NewPost extends Component {
   }
 
   submit() {
-    makePost(this.props.alias, this.state.content, this.post);
+    //makePost(this.props.alias, this.state.content, this.post);
+    this.post();
   }
 
   appendText(toAppend) {
@@ -30,7 +31,7 @@ class NewPost extends Component {
   }
 
   post() {
-    this.props.updateList(this.props.alias);
+    //this.props.updateList(this.props.alias);
       this.setState({
         content: ""
       })

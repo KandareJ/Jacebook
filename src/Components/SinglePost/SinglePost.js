@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import PostList from '../PostList/PostList';
 import SideMenu from '../SideMenu/SideMenu';
+import { connect } from 'react-redux';
+import { singlePost } from '../../Actions/SinglePostAction';
 
-export default class Profile extends Component {
+class SinglePost extends Component {
+
+  componentDidMount() {
+    if(this.props.match) this.props.singlePost(this.props.match.params.id);
+  }
 
   render() {
     let post = [];
-    if(this.props.match) post.push(this.props.match.params.id)
+
     return(
       <div className="feed-body">
         <Grid container spacing={2}>
@@ -27,3 +33,11 @@ export default class Profile extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    displayPosts: (state.posts) ? state.posts : []
+  };
+}
+
+export default connect(mapStateToProps, { singlePost })(SinglePost);

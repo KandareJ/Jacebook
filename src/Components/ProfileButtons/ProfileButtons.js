@@ -44,13 +44,13 @@ class ProfileButtons extends Component {
     return(
       <List className={this.props.className}>
 
-          { !this.props.isMe && !this.props.isFollowing &&
+          { !this.props.isMe && /*!this.props.isFollowing*/false &&
             <ListItem button className="profile-button" onClick={this.followUser}>
               <div className="side-menu-text">Follow</div>
             </ListItem>
           }
 
-          { !this.props.isMe && this.props.isFollowing &&
+          { !this.props.isMe && /*this.props.isFollowing*/true &&
             <ListItem button className="profile-button" onClick={this.unfollowUser}>
               <div className="side-menu-text">Unfollow</div>
             </ListItem>
@@ -72,11 +72,11 @@ class ProfileButtons extends Component {
 }
 
 const myIncludes = (array, value) => {
-  let reduced = array.map((x) => {
+  /*let reduced = array.map((x) => {
     return x.alias;
   });
 
-  return reduced.includes(value);
+  return reduced.includes(value);*/
 }
 
 const mapStateToProps = (state) => {

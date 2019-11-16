@@ -19,6 +19,7 @@ class PeopleList extends Component {
       return(<div>No users to show</div>)
     }
     else {
+      console.log(this.props.people.follow)
       return this.props.people.map((person) => {
         return (<Person className={this.props.className} key={person.alias} person={person}/>);
       });

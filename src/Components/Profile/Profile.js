@@ -4,18 +4,24 @@ import PostList from '../PostList/PostList';
 import NewPost from '../Newsfeed/NewPost';
 import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
-import { getProfile } from '../../Actions/ProfileAction';
+import { getFollowers, getFollowing, getProfile } from '../../Actions/ProfileAction';
+import { getPostListAction } from '../../Actions/FeedAction';
 import { connect } from 'react-redux';
 import './Profile.css';
 
 class Profile extends Component {
   //this.props.match.params.alias
   componentDidMount() {
+    this.props.getFollowers(this.props.match.params.alias);
+    this.props.getFollowing(this.props.match.params.alias);
+    this.props.getPostListAction(this.props.match.params.alias);
     this.props.getProfile(this.props.match.params.alias);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.alias !== prevProps.match.params.alias) {
+      this.props.getFollowers(this.props.match.params.alias);
+      this.props.getFollowing(this.props.match.params.alias);
       this.props.getProfile(this.props.match.params.alias);
     }
   }
@@ -29,7 +35,7 @@ class Profile extends Component {
           <Grid item xs={2} />
 
           <Grid item xs={3}>
-            <PeopleList className="follows" header="Following" people={this.props.following} max={6}/>
+            <PeopleList className="follows" header="Following" people={this.props.following} alias={this.props.match.params.alias} max={6}/>
             <br />
             <PeopleList className="follows" header="Followers" people={this.props.followers} max={6} />
           </Grid>
@@ -38,6 +44,7 @@ class Profile extends Component {
             <div className="scrollable-content">
               {this.props.isMe && <NewPost updateList={this.props.getProfile} />}
               <PostList posts={this.props.posts} alias={this.props.alias} / >
+              <button className="form-button">View More</button>
             </div>
           </Grid>
 
@@ -50,15 +57,16 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   let isMe = (state.login && state.profile && state.login.alias === state.profile.alias);
+  if(state.profile) console.log(state.profile);
   return {
     alias: state.profile ? state.profile.alias : "",
     name: state.profile ? state.profile.name : "",
     photo: state.profile ? state.profile.photo : "",
-    posts: state.profile ? state.profile.posts : [],
-    following: state.profile ? state.profile.following : null,
-    followers: state.profile ? state.profile.followers : null,
+    posts: state.profile ? state.profile.story : [],
+    following: state.following ? state.following : null,
+    followers: state.followers ? state.followers : null,
     isMe
   };
 }
 
-export default connect(mapStateToProps, { getProfile })(Profile);
+export default connect(mapStateToProps, { getFollowers, getFollowing, getPostListAction, getProfile })(Profile);

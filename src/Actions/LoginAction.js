@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const loginAction = (alias, password) => {
-  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/login?alias=${alias}&password=${password}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signin`;
     return function (dispatch) {
-      axios.get(url).then((resp) => {
+      axios.get(url, {headers: {username: alias, password}}).then((resp) => {
         dispatch({
             type: "USER_LOGIN",
             payload: {
@@ -13,7 +13,25 @@ export const loginAction = (alias, password) => {
               photo: resp.data.photo
             }
           });
-      })
+      }).catch((error) => {
+        if(error.response && (error.response.status === 500 || error.response.status === 400)) {
+          dispatch({
+              type: "USER_LOGIN",
+              payload: {
+                message: error.response.data.message
+              }
+            });
+        }
+        else {
+          dispatch({
+              type: "USER_LOGIN",
+              payload: {
+                message: "Unable to connect to server"
+              }
+            });
+        }
+
+      });
     };
 };
 
@@ -49,18 +67,32 @@ export const createAccount = (alias, firstName, lastName, password, confirmPassw
   }
 
   //all fields filled and passwords match
-  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/signup/user/sign_up?alias=${alias}&password=${password}&firstName=${firstName}&lastName=${lastName}&photo=${image}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signup`;
     return function (dispatch) {
-      axios.post(url).then((resp) => {
+      axios.post(url, { alias, firstName, lastName, password, photo:image }).then((resp) => {
+        console.log(resp.data)
         dispatch({
             type: "USER_SIGNUP",
-            payload: {
-              authToken: resp.data.directives[0].options.authToken,
-              message: resp.data.directives[0].options.message,
-              photo: resp.data.directives[0].options.photo,
-              alias
-            }
+            payload: resp.data
           });
-      })
+      }).catch((error) => {
+        if(error.response && (error.response.status === 500 || error.response.status === 400)) {
+          dispatch({
+              type: "USER_SIGNUP",
+              payload: {
+                message: error.response.data.message
+              }
+            });
+        }
+        else {
+          dispatch({
+              type: "USER_SIGNUP",
+              payload: {
+                message: "Unable to connect to server"
+              }
+            });
+        }
+
+      });
     };
 }

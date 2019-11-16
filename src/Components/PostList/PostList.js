@@ -11,37 +11,24 @@ class PostList extends Component {
   }
 
   componentDidMount() {
-    /*if (this.props.posts.length > 0)*/ this.props.getPostListAction(this.props.posts);
+    /*if (this.props.posts.length > 0)*/ //this.props.getPostListAction(this.props.alias);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.posts.length !== prevProps.posts.length || this.props.alias !== prevProps.alias) {
-      /*if (this.props.posts.length > 0)*/ this.props.getPostListAction(this.props.posts);
+    if (this.props.alias !== prevProps.alias) {
+      /*if (this.props.posts.length > 0)*/ //this.props.getPostListAction(this.props.alias);
     }
-    else if (this.props.difCheck && !this.compareArrays(this.props.posts, prevProps.posts)) {
-      this.props.getPostListAction(this.props.posts);
-    }
-
-  }
-
-  compareArrays(arr1, arr2) {
-    if (arr1.length !== arr2.length) return false;
-
-    for(var i = 0; i < arr1.length; i++) {
-      if(arr1[i] !== arr2[i]) return false;
-    }
-
-    return true;
   }
 
   renderPosts() {
-    let reversed = this.props.displayPosts.slice().reverse();
+    let reversed = this.props.displayPosts
     return (reversed).map((post) => {
       return(<Post post={post} key={post.timestamp} />);
     });
   }
 
   render() {
+    console.log(this.props.displayPosts);
     return(
       <div>
         {this.props.displayPosts && this.renderPosts()}
@@ -52,7 +39,7 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    displayPosts: state.posts
+    displayPosts: (state.posts) ? state.posts : []
   };
 }
 

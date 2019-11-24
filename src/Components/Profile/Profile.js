@@ -29,7 +29,7 @@ class Profile extends Component {
   render() {
     return(
       <div className="feed-body">
-        <ProfileHead alias={this.props.alias} name={this.props.name} photo={this.props.photo} />
+        <ProfileHead alias={this.props.alias} name={this.props.name} photo={this.props.photo} isMe={this.props.isMe} />
 
         <Grid container spacing={2}>
           <Grid item xs={2} />
@@ -55,16 +55,16 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  let isMe = (state.login && state.profile && state.login.alias === state.profile.alias);
-  if(state.profile) console.log(state.profile);
+const mapStateToProps = (state, props) => {
+  let profAlias = props.match.params.alias;
+  let isMe = (state.login && state.login.alias === profAlias);
   return {
-    alias: state.profile ? state.profile.alias : "",
-    name: state.profile ? state.profile.name : "",
-    photo: state.profile ? state.profile.photo : "",
-    posts: state.profile ? state.profile.story : [],
-    following: state.following ? state.following : null,
-    followers: state.followers ? state.followers : null,
+    alias: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].alias : "") : "",
+    name: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].name : "") : "",
+    photo: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].photo : "") : "",
+    posts: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].story : []) : [],
+    following: state.following ? state.following[profAlias] : null,
+    followers: state.followers ? state.followers[profAlias] : null,
     isMe
   };
 }

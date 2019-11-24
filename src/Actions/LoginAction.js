@@ -67,32 +67,38 @@ export const createAccount = (alias, firstName, lastName, password, confirmPassw
   }
 
   //all fields filled and passwords match
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signup`;
+let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signup`;
     return function (dispatch) {
-      axios.post(url, { alias, firstName, lastName, password, photo:image }).then((resp) => {
-        console.log(resp.data)
-        dispatch({
-            type: "USER_SIGNUP",
-            payload: resp.data
-          });
-      }).catch((error) => {
-        if(error.response && (error.response.status === 500 || error.response.status === 400)) {
+      uploadImage(image).then((imageResp)=>{
+        axios.post(url, { alias, firstName, lastName, password, photo:imageResp.data.url }).then((resp) => {
           dispatch({
               type: "USER_SIGNUP",
-              payload: {
-                message: error.response.data.message
-              }
+              payload: resp.data
             });
-        }
-        else {
-          dispatch({
-              type: "USER_SIGNUP",
-              payload: {
-                message: "Unable to connect to server"
-              }
-            });
-        }
+        }).catch((error) => {
+          if(error.response && (error.response.status === 500 || error.response.status === 400)) {
+            dispatch({
+                type: "USER_SIGNUP",
+                payload: {
+                  message: error.response.data.message
+                }
+              });
+          }
+          else {
+            dispatch({
+                type: "USER_SIGNUP",
+                payload: {
+                  message: "Unable to connect to server"
+                }
+              });
+          }
 
+        });
       });
-    };
+  }
+}
+
+const uploadImage = (image) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`;
+  return axios.post(url, {toUpload: image});
 }

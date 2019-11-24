@@ -1,27 +1,41 @@
 import axios from 'axios';
 
-export const follow = (alias, followAlias, callback) => {
-  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/follow/user/follow`;
+export const follow = (token, followAlias, callback) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/follow/${followAlias}`;
 
-  let body = {
-    alias,
-    followAlias
-  }
-
-  axios.post(url, body).then((resp) => {
+  axios.post(url, {}, {headers: {authToken: token}}).then((resp) => {
     callback();
   })
 };
 
-export const unfollow = (alias, unfollowAlias, callback) => {
-  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/unfollow/user/unfollow`;
+export const unfollow = (token, unfollowAlias, callback) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/unfollow/${unfollowAlias}`;
 
-  let body = {
-    alias,
-    unfollowAlias
-  }
-
-  axios.post(url, body).then((resp) => {
+  axios.post(url, {}, {headers: {authToken: token}}).then((resp) => {
     callback();
   })
+}
+
+export const isFollowing = (token, alias) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/isfollowing/${alias}`;
+  return function (dispatch) {
+    axios.get(url, {headers: {authToken: token}}).then((resp) => {
+      dispatch({
+          type: "IS_FOLLOWING",
+          payload: {
+            isFollowing: (resp.data.isFollowing) ? true : false,
+            followAlias: alias
+          }
+        });
+    }).catch((error) => {
+        dispatch({
+            type: "IS_FOLLOWING",
+            payload: {
+              isFollowing: false,
+              followAlias: alias
+            }
+          });
+
+    });
+  };
 }

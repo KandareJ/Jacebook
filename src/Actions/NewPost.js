@@ -1,21 +1,22 @@
 import axios from 'axios';
 
-export const makePost = (alias, content, callback) => {
-  let url = `http://localhost:8080/sky/event/EZFfKF5Z3caeJnxdyEugBR/post/post/create`;
+export const makePost = (token, content, image, video, callback) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/post/create`;
   if(content === null || content.length < 1) return;
   let hashtags = getHashtags(content);
   let mentions = getMentions(content);
   let urls = getURLs(content);
 
   let body = {
-    alias,
     content,
     hashtags,
     mentions,
     urls,
+    image: "null",
+    video: "null"
   }
 
-  axios.post(url, body).then((resp) => {
+  axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
     callback();
   })
 }

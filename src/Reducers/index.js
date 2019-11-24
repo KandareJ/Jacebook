@@ -4,6 +4,7 @@ import { getHashtagsReducer } from './HashtagReducer';
 import { getNewsFeedReducer, getPostListReducer } from './FeedReducer';
 import { loginReducer } from './LoginReducer';
 import { getProfileReducers, getFollowers, getFollowing } from './ProfileReducer';
+import { isFollowing } from './IsFollowingReducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   tags: getHashtagsReducer,
   search: getSearchReducer,
   followers: getFollowers,
-  following: getFollowing
+  following: getFollowing,
+  isFollowing: isFollowing
 })

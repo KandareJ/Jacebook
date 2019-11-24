@@ -14,7 +14,6 @@ class Newsfeed extends Component {
 
   loadMore() {
     return () => {
-      console.log("HEELP", this.props.feed[this.props.feed.length - 1])
       this.props.getMorePostsAction(this.props.alias, this.props.feed[this.props.feed.length - 1].id);
     }
   }
@@ -29,7 +28,7 @@ class Newsfeed extends Component {
           </Grid>
           <Grid item xs={5}>
             <div className="scrollable-content">
-              <NewPost />
+              <NewPost updateList={this.props.getPostListAction} />
               <PostList alias={this.props.alias} />
               <button onClick={this.loadMore()} className="form-button">View More</button>
             </div>

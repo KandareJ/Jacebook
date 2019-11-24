@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { connect } from 'react-redux';
-import { follow, unfollow } from '../../Actions/Follow';
+import { follow, unfollow, isFollowing } from '../../Actions/Follow';
 import { getProfile } from '../../Actions/ProfileAction';
 import './ProfileButton.css';
 
@@ -17,8 +17,8 @@ class ProfileButtons extends Component {
   }
 
   followUser() {
-    if(this.props.alias && this.props.profAlias) {
-      follow(this.props.alias, this.props.profAlias, this.followCallback);
+    if(this.props.token && this.props.profAlias) {
+      follow(this.props.token, this.props.profAlias, this.followCallback);
     }
   }
 
@@ -30,7 +30,7 @@ class ProfileButtons extends Component {
 
   unfollowUser() {
     if(this.props.alias && this.props.profAlias) {
-      unfollow(this.props.alias, this.props.profAlias, this.followCallback);
+      unfollow(this.props.token, this.props.profAlias, this.followCallback);
     }
   }
 
@@ -41,16 +41,17 @@ class ProfileButtons extends Component {
   }
 
   render() {
+    if(this.props.token && this.props.profAlias)this.props.isFollowing(this.props.token, this.props.profAlias);
     return(
       <List className={this.props.className}>
 
-          { !this.props.isMe && /*!this.props.isFollowing*/false &&
+          { !this.props.isMe && !this.props.isFollowingBool &&
             <ListItem button className="profile-button" onClick={this.followUser}>
               <div className="side-menu-text">Follow</div>
             </ListItem>
           }
 
-          { !this.props.isMe && /*this.props.isFollowing*/true &&
+          { !this.props.isMe && this.props.isFollowingBool &&
             <ListItem button className="profile-button" onClick={this.unfollowUser}>
               <div className="side-menu-text">Unfollow</div>
             </ListItem>
@@ -71,23 +72,13 @@ class ProfileButtons extends Component {
   }
 }
 
-const myIncludes = (array, value) => {
-  /*let reduced = array.map((x) => {
-    return x.alias;
-  });
-
-  return reduced.includes(value);*/
-}
-
-const mapStateToProps = (state) => {
-  let isMe = (state.login && state.profile && state.login.alias === state.profile.alias);
-  let isFollowing = (state.login && state.profile && myIncludes(state.profile.followers, state.login.alias));
+const mapStateToProps = (state, props) => {
+  let isFollowingBool = (state.profile && state.isFollowing && state.isFollowing[props.profAlias]);
   return {
     alias: state.login.alias,
-    isMe,
-    isFollowing,
-    profAlias: state.profile ? state.profile.alias : ""
+    token: state.login.authToken,
+    isFollowingBool
   };
 }
 
-export default connect(mapStateToProps, { getProfile })(ProfileButtons);
+export default connect(mapStateToProps, { getProfile, isFollowing })(ProfileButtons);

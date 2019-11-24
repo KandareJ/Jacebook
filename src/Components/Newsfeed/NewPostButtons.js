@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhotoVideo, faUser, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faVideo, faUser, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import './NewsFeed.css';
 
 export default class NewPostButtons extends Component {
@@ -22,9 +22,16 @@ export default class NewPostButtons extends Component {
     return(
       <div className="button-inline">
         <div className="new-post-option">
-          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="image/*, video/*" />
+          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="image/*" />
           <label htmlFor="postImage" className="button-inline">
-            <FontAwesomeIcon size="1x" icon={faPhotoVideo} /><div className="new-post-option-text">Add Image/Video</div>
+            <FontAwesomeIcon size="1x" icon={faImage} /><div className="new-post-option-text">Add Image</div>
+          </label>
+        </div>
+
+        <div className="new-post-option">
+          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="video/*" />
+          <label htmlFor="postImage" className="button-inline">
+            <FontAwesomeIcon size="1x" icon={faVideo} /><div className="new-post-option-text">Add Video</div>
           </label>
         </div>
 

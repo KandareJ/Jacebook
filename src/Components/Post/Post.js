@@ -87,8 +87,8 @@ export default class Post extends Component {
           <CardContent>
             {this.convertContent(this.props.post.content)}
           </CardContent>
-          {this.props.post.image && <img src={this.props.post.image} alt="Accompanying media" className="media"/>}
-          {this.props.post.video && <div>video</div>}
+          {this.props.post.image && this.props.post.image !== "null" && <img src={this.props.post.image} alt="Accompanying media" className="media"/>}
+          {this.props.post.video && this.props.post.video !== "null" && <div>video</div>}
           <div className="mentions-hashtags-margins">
             {this.props.post.hashtags && this.showHashtags()}
             {this.props.post.mentions && this.showMentions()}

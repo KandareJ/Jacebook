@@ -25,9 +25,11 @@ class CreateAccount extends Component {
   }
 
   onUpload(e) {
-    if(e.target.files[0]) this.setState({
-      image: URL.createObjectURL(e.target.files[0])
-    });
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      this.setState({image: reader.result});
+    };
   }
 
   submit(e) {

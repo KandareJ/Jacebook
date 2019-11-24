@@ -14,7 +14,7 @@ export const getNewsFeedAction = (alias) => {
 }
 
 export const getPostListAction = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=3`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=25`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -33,7 +33,6 @@ export const getPostListAction = (alias) => {
 };
 
 export const getMorePostsAction = (alias, lastPost) => {
-  console.log("Last pOst", lastPost);
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=3&lastPost=${lastPost}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {

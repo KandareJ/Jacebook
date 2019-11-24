@@ -27,7 +27,7 @@ export default class ProfileHead extends Component {
                   </div>
                 </div>
                 <div className="float-bottom">
-                  <ProfileButtons className="list-horizontal-display" />
+                  <ProfileButtons isMe={this.props.isMe} profAlias={this.props.alias} className="list-horizontal-display" />
                 </div>
               </Grid>
             </Grid>

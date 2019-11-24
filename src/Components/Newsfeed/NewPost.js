@@ -20,7 +20,7 @@ class NewPost extends Component {
   }
 
   submit() {
-    //makePost(this.props.alias, this.state.content, this.post);
+    makePost(this.props.token, this.state.content, null, null, this.post);
     this.post();
   }
 
@@ -31,7 +31,7 @@ class NewPost extends Component {
   }
 
   post() {
-    //this.props.updateList(this.props.alias);
+    this.props.updateList(this.props.alias);
       this.setState({
         content: ""
       })
@@ -67,7 +67,8 @@ class NewPost extends Component {
 const mapStateToProps = (state) => {
   return {
     alias: state.login ? state.login.alias : "",
-    photo: state.login ? state.login.photo : ""
+    photo: state.login ? state.login.photo : "",
+    token: state.login ? state.login.authToken : ""
   };
 }
 

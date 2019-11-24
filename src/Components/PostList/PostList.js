@@ -28,7 +28,6 @@ class PostList extends Component {
   }
 
   render() {
-    console.log(this.props.displayPosts);
     return(
       <div>
         {this.props.displayPosts && this.renderPosts()}

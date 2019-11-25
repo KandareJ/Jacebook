@@ -3,14 +3,16 @@ import { getSearchReducer } from './SearchReducer';
 import { getHashtagsReducer } from './HashtagReducer';
 import { getNewsFeedReducer, getPostListReducer } from './FeedReducer';
 import { loginReducer } from './LoginReducer';
-import { getProfileReducers, getFollowers, getFollowing } from './ProfileReducer';
+import { getProfileReducers, getFollowers, getFollowing, getStoryReducer } from './ProfileReducer';
 import { isFollowing } from './IsFollowingReducer';
+import { getSinglePost } from './SinglePostReducer';
 
 export default combineReducers({
   login: loginReducer,
   profile: getProfileReducers,
-  posts: getPostListReducer,
+  story: getStoryReducer,
   feed: getNewsFeedReducer,
+  singlePost: getSinglePost,
   tags: getHashtagsReducer,
   search: getSearchReducer,
   followers: getFollowers,

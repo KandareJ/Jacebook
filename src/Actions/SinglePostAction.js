@@ -6,7 +6,10 @@ export const singlePost = (postID) => {
       axios.get(url).then((resp) => {
         dispatch({
             type: "SINGLE_POST",
-            payload: [resp.data]
+            payload: {
+              postID,
+              posts: [resp.data]
+            }
           });
       })
     };

@@ -40,9 +40,10 @@ class UsersPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let tag = props.match.params.hashtag;
   return {
-    tags: state.tags ? state.tags : []
+    tags: state.tags ? (state.tags[tag] ? state.tags[tag] : []) : []
   };
 }
 

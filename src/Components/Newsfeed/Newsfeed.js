@@ -4,12 +4,12 @@ import PostList from '../PostList/PostList';
 import NewPost from './NewPost';
 import SideMenu from '../SideMenu/SideMenu';
 import { connect } from 'react-redux';
-import {getPostListAction, getMorePostsAction } from '../../Actions/FeedAction';
+import {getNewsFeedAction, getMorePostsAction } from '../../Actions/FeedAction';
 import './NewsFeed.css';
 
 class Newsfeed extends Component {
   componentDidMount() {
-    if(this.props.alias) this.props.getPostListAction(this.props.alias);
+    if(this.props.alias) this.props.getNewsFeedAction(this.props.alias);
   }
 
   loadMore() {
@@ -28,8 +28,8 @@ class Newsfeed extends Component {
           </Grid>
           <Grid item xs={5}>
             <div className="scrollable-content">
-              <NewPost updateList={this.props.getPostListAction} />
-              <PostList alias={this.props.alias} />
+              <NewPost updateList={this.props.getNewsFeedAction} />
+              <PostList alias={this.props.alias} posts={this.props.feed} />
               <button onClick={this.loadMore()} className="form-button">View More</button>
             </div>
           </Grid>
@@ -43,9 +43,9 @@ class Newsfeed extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    feed: state.posts ? state.posts : [],
+    feed: state.feed ? state.feed : [],
     alias: state.login.alias
   };
 }
 
-export default connect(mapStateToProps, { getPostListAction, getMorePostsAction })(Newsfeed);
+export default connect(mapStateToProps, { getNewsFeedAction, getMorePostsAction })(Newsfeed);

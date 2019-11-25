@@ -53,10 +53,11 @@ class UsersPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let profAlias = props.match.params.alias;
   return {
-    following: state.following ? state.following : null,
-    followers: state.followers ? state.followers : null,
+    following: state.following ? state.following[profAlias] : null,
+    followers: state.followers ? state.followers[profAlias] : null
   };
 }
 

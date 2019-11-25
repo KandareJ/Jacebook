@@ -6,7 +6,10 @@ export const getHashTagAction = (tag) => {
       axios.get(url).then((resp) => {
         dispatch({
             type: "GET_HASHTAG",
-            payload: resp.data
+            payload: {
+              tag,
+              posts: resp.data.posts
+            }
           });
       })
     };

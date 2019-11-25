@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-//deprecated bruh.
+
 export const getNewsFeedAction = (alias) => {
-  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getAllFollowed?alias=${alias}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=10`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
             type: "GET_NEWS_FEED",
-            payload: resp.data
+            payload: resp.data.posts
           });
       })
     };

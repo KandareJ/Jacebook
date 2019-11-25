@@ -4,7 +4,7 @@ import PostList from '../PostList/PostList';
 import NewPost from '../Newsfeed/NewPost';
 import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
-import { getFollowers, getFollowing, getProfile } from '../../Actions/ProfileAction';
+import { getFollowers, getFollowing, getProfile, getStory } from '../../Actions/ProfileAction';
 import { getPostListAction } from '../../Actions/FeedAction';
 import { connect } from 'react-redux';
 import './Profile.css';
@@ -16,6 +16,7 @@ class Profile extends Component {
     this.props.getFollowing(this.props.match.params.alias);
     this.props.getPostListAction(this.props.match.params.alias);
     this.props.getProfile(this.props.match.params.alias);
+    this.props.getStory(this.props.match.params.alias);
   }
 
   componentDidUpdate(prevProps) {
@@ -23,6 +24,7 @@ class Profile extends Component {
       this.props.getFollowers(this.props.match.params.alias);
       this.props.getFollowing(this.props.match.params.alias);
       this.props.getProfile(this.props.match.params.alias);
+      this.props.getStory(this.props.match.params.alias);
     }
   }
 
@@ -62,11 +64,11 @@ const mapStateToProps = (state, props) => {
     alias: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].alias : "") : "",
     name: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].name : "") : "",
     photo: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].photo : "") : "",
-    posts: state.profile ? (state.profile[profAlias] ? state.profile[profAlias].story : []) : [],
+    posts: state.story ? state.story[profAlias] : [],
     following: state.following ? state.following[profAlias] : null,
     followers: state.followers ? state.followers[profAlias] : null,
     isMe
   };
 }
 
-export default connect(mapStateToProps, { getFollowers, getFollowing, getPostListAction, getProfile })(Profile);
+export default connect(mapStateToProps, { getFollowers, getFollowing, getPostListAction, getProfile, getStory })(Profile);

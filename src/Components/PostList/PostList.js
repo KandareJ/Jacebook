@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostListAction } from '../../Actions/FeedAction';
 import Post from '../Post/Post';
 
 class PostList extends Component {
@@ -21,8 +20,7 @@ class PostList extends Component {
   }
 
   renderPosts() {
-    let reversed = this.props.displayPosts
-    return (reversed).map((post) => {
+    return (this.props.posts).map((post) => {
       return(<Post post={post} key={post.timestamp} />);
     });
   }
@@ -30,16 +28,14 @@ class PostList extends Component {
   render() {
     return(
       <div>
-        {this.props.displayPosts && this.renderPosts()}
+        {this.props.posts && this.renderPosts()}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    displayPosts: (state.posts) ? state.posts : []
-  };
+  return {};
 }
 
-export default connect(mapStateToProps, { getPostListAction })(PostList);
+export default connect(mapStateToProps, { })(PostList);

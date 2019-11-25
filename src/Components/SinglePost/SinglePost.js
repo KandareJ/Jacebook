@@ -12,8 +12,6 @@ class SinglePost extends Component {
   }
 
   render() {
-    let post = [];
-
     return(
       <div className="feed-body">
         <Grid container spacing={2}>
@@ -24,7 +22,7 @@ class SinglePost extends Component {
           </Grid>
 
           <Grid item xs={5}>
-            <PostList posts={post} alias={this.props.alias} / >
+            <PostList posts={this.props.post} alias={this.props.alias} / >
           </Grid>
 
           <Grid item xs={3} />
@@ -34,9 +32,10 @@ class SinglePost extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let postID = props.match.params.id;
   return {
-    displayPosts: (state.posts) ? state.posts : []
+    post: (state.singlePost) ? (state.singlePost[postID] ? state.singlePost[postID] : []) : []
   };
 }
 

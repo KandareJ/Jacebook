@@ -48,3 +48,13 @@ export const getFollowing = (last=null, action) => {
   }*/
   else return last;
 }
+
+export const getStoryReducer = (last=null, action) => {
+  if (action.type === "GET_USER_STORY") {
+    return {
+      ...last,
+      [action.payload.alias]: action.payload.story
+    }
+  }
+  else return last;
+}

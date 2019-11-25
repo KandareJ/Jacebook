@@ -3,6 +3,13 @@ export const loginReducer = (last=null, action) => {
     return action.payload;
   }
 
+  else if(action.type === "UPDATE_PROFILE_PIC") {
+    return {
+      ...last,
+      photo: action.payload
+    }
+  }
+
   else if (action.type === "USER_LOGOUT") {
     return {
       authToken: "",

@@ -7,18 +7,52 @@ export const makePost = (token, content, image, video, callback) => {
   let mentions = getMentions(content);
   let urls = getURLs(content);
 
-  let body = {
-    content,
-    hashtags,
-    mentions,
-    urls,
-    image: "null",
-    video: "null"
-  }
+  if(image !== "null") {
+    axios.post(`https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`, {toUpload:image}).then((resp) => {
+      let body = {
+        content,
+        hashtags,
+        mentions,
+        urls,
+        image: resp.data.url,
+        video,
+      }
 
-  axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
-    callback();
-  })
+      axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
+        callback();
+      })
+    })
+  }
+  else if (video !== "null") {
+    axios.post(`https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`, {toUpload:video}).then((resp) => {
+      let body = {
+        content,
+        hashtags,
+        mentions,
+        urls,
+        image,
+        video: resp.data.url,
+      }
+
+      axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
+        callback();
+      })
+    })
+  }
+  else {
+    let body = {
+      content,
+      hashtags,
+      mentions,
+      urls,
+      image,
+      video,
+    }
+
+    axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
+      callback();
+    })
+  }
 }
 
 const getHashtags = (content) => {

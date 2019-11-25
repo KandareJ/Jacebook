@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const getNewsFeedAction = (alias) => {
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=10`;
     return function (dispatch) {
@@ -13,7 +12,7 @@ export const getNewsFeedAction = (alias) => {
     };
 }
 
-export const getPostListAction = (alias) => {
+/*export const getPostListAction = (alias) => {
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=25`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
@@ -49,4 +48,4 @@ export const getMorePostsAction = (alias, lastPost) => {
         }
       });
     };
-}
+}*/

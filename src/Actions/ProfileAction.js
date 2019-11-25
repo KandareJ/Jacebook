@@ -55,7 +55,7 @@ export const getMoreFollowing = (alias, lastFollowing) => {
     axios.get(url).then((resp) => {
       dispatch({
           type: "GET_MORE_FOLLOWING",
-          payload: resp.data
+          payload: resp.data.url
         });
     });
   }

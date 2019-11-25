@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const follow = (token, followAlias, callback) => {
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/follow/${followAlias}`;
-
   axios.post(url, {}, {headers: {authToken: token}}).then((resp) => {
     callback();
   })

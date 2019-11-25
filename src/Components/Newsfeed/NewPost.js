@@ -10,18 +10,21 @@ class NewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: ""
+      content: "",
+      image: "null",
+      video: "null"
     };
 
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.post = this.post.bind(this);
     this.appendText = this.appendText.bind(this);
+    this.attachImage = this.attachImage.bind(this);
+    this.attachVideo = this.attachVideo.bind(this);
   }
 
   submit() {
-    makePost(this.props.token, this.state.content, null, null, this.post);
-    this.post();
+    makePost(this.props.token, this.state.content, this.state.image, this.state.video, this.post);
   }
 
   appendText(toAppend) {
@@ -33,12 +36,28 @@ class NewPost extends Component {
   post() {
     this.props.updateList(this.props.alias);
       this.setState({
-        content: ""
+        content: "",
+        image: "null",
+        video: "null"
       })
   }
 
   onChange(e) {
     this.setState({content: e.target.value});
+  }
+
+  attachImage(image) {
+    this.setState({
+      image,
+      video: "null"
+    })
+  }
+
+  attachVideo(video) {
+    this.setState({
+      image: "null",
+      video
+    })
   }
 
   render() {
@@ -55,8 +74,10 @@ class NewPost extends Component {
                 <textarea className="new-post-content" placeholder="What's on your mind?" value={this.state.content} onChange={this.onChange} />
               </Grid>
             </Grid>
+            {this.state.image !== "null" && <img src={this.state.image} alt="attachment" className="media" />}
+            {this.state.video !== "null" && <video className="media" controls><source src={this.state.video}/></video>}
             <hr className="divider" />
-            <NewPostButtons submit={this.submit} appendText={this.appendText} />
+            <NewPostButtons submit={this.submit} appendText={this.appendText} attachImage={this.attachImage} attachVideo={this.attachVideo} />
           </div>
         </Card>
       </div>

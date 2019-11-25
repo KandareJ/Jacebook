@@ -3,7 +3,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { connect } from 'react-redux';
 import { follow, unfollow, isFollowing } from '../../Actions/Follow';
-import { getProfile } from '../../Actions/ProfileAction';
+import { getFollowers, getProfile, getStory } from '../../Actions/ProfileAction';
+import { updatePic } from '../../Actions/ProfilePicAction';
+import { getNewsFeedAction } from '../../Actions/FeedAction';
 import './ProfileButton.css';
 
 class ProfileButtons extends Component {
@@ -14,6 +16,8 @@ class ProfileButtons extends Component {
     this.followCallback = this.followCallback.bind(this);
     this.unfollowUser = this.unfollowUser.bind(this);
     this.unfollowCallback = this.followCallback.bind(this);
+    this.onUpload = this.onUpload.bind(this);
+    this.uploadCallback = this.uploadCallback.bind(this);
   }
 
   followUser() {
@@ -23,8 +27,9 @@ class ProfileButtons extends Component {
   }
 
   followCallback() {
-    if(this.props.getProfile && this.props.profAlias){
-      this.props.getProfile(this.props.profAlias);
+    if(this.props.getFollowers && this.props.profAlias){
+      this.props.getFollowers(this.props.profAlias);
+      this.props.isFollowing(this.props.token, this.props.profAlias);
     }
   }
 
@@ -35,9 +40,24 @@ class ProfileButtons extends Component {
   }
 
   unfollowCallback() {
-    if(this.props.getProfile && this.props.profAlias){
-      this.props.getProfile(this.props.profAlias);
+    if(this.props.getFollowers && this.props.profAlias){
+      this.props.getFollowers(this.props.profAlias);
+      this.props.isFollowing(this.props.token, this.props.profAlias);
     }
+  }
+
+  onUpload(e) {
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      this.props.updatePic(this.props.token, reader.result, this.uploadCallback);
+    };
+  }
+
+  uploadCallback() {
+    this.props.getProfile(this.props.profAlias);
+    this.props.getStory(this.props.profAlias);
+    this.props.getNewsFeedAction(this.props.profAlias);
   }
 
   render() {
@@ -57,7 +77,7 @@ class ProfileButtons extends Component {
             </ListItem>
           }
 
-          <input className="add-media-hidden" id="editImage" type="file" name="media" accept="image/*" />
+          <input className="add-media-hidden" id="editImage" type="file" name="media" accept="image/*" onChange={this.onUpload} />
 
           { this.props.isMe &&
           <label htmlFor="editImage" className="button-inline">
@@ -81,4 +101,4 @@ const mapStateToProps = (state, props) => {
   };
 }
 
-export default connect(mapStateToProps, { getProfile, isFollowing })(ProfileButtons);
+export default connect(mapStateToProps, { getFollowers, isFollowing, getProfile, getStory, getNewsFeedAction, updatePic })(ProfileButtons);

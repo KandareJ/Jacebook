@@ -8,6 +8,8 @@ export default class NewPostButtons extends Component {
     super(props);
     this.addHashtag = this.addHashtag.bind(this);
     this.addMention = this.addMention.bind(this);
+    this.onUploadImage = this.onUploadImage.bind(this);
+    this.onUploadVideo = this.onUploadVideo.bind(this);
   }
 
   addHashtag() {
@@ -18,19 +20,35 @@ export default class NewPostButtons extends Component {
     this.props.appendText(" @");
   }
 
+  onUploadImage(e) {
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      this.props.attachImage(reader.result);
+    };
+  }
+
+  onUploadVideo(e) {
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      this.props.attachVideo(reader.result);
+    };
+  }
+
   render() {
     return(
       <div className="button-inline">
         <div className="new-post-option">
-          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="image/*" />
+          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="image/*" onChange={this.onUploadImage}/>
           <label htmlFor="postImage" className="button-inline">
             <FontAwesomeIcon size="1x" icon={faImage} /><div className="new-post-option-text">Add Image</div>
           </label>
         </div>
 
         <div className="new-post-option">
-          <input className="add-media-hidden" id="postImage" type="file" name="media" accept="video/*" />
-          <label htmlFor="postImage" className="button-inline">
+          <input className="add-media-hidden" id="postVideo" type="file" name="media" accept="video/*" onChange={this.onUploadVideo}/>
+          <label htmlFor="postVideo" className="button-inline">
             <FontAwesomeIcon size="1x" icon={faVideo} /><div className="new-post-option-text">Add Video</div>
           </label>
         </div>

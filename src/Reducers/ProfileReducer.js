@@ -13,12 +13,9 @@ export const getProfileReducers = (last=null, action) => {
 
 export const getFollowers = (last=null, action) => {
   if (action.type === "GET_FOLLOWERS") {
-    if(last === null) return { [action.payload.alias]: action.payload.followers };
-    else {
-      return {
-        ...last,
-        [action.payload.alias]: action.payload.followers
-      }
+    return {
+      ...last,
+      [action.payload.alias]: action.payload.followers
     }
   }
   /*else if (action.type === "GET_MORE_FOLLOWERS") {

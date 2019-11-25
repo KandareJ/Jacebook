@@ -44,7 +44,7 @@ class Profile extends Component {
 
           <Grid item xs={5}>
             <div className="scrollable-content">
-              {this.props.isMe && <NewPost updateList={this.props.getProfile} />}
+              {this.props.isMe && <NewPost updateList={this.props.getStory} />}
               <PostList posts={this.props.posts} alias={this.props.alias} / >
               <button className="form-button">View More</button>
             </div>

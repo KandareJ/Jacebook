@@ -43,7 +43,6 @@ class PeopleList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    alias: state.profile ? state.profile.alias : ""
   };
 }
 

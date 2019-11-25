@@ -36,6 +36,7 @@ class Profile extends Component {
   }
 
   render() {
+    console.log("in profile", this.props.match.params.alias)
     return(
       <div className="feed-body">
         <ProfileHead alias={this.props.alias} name={this.props.name} photo={this.props.photo} isMe={this.props.isMe} />
@@ -46,7 +47,7 @@ class Profile extends Component {
           <Grid item xs={3}>
             <PeopleList className="follows" header="Following" people={this.props.following} alias={this.props.match.params.alias} max={6}/>
             <br />
-            <PeopleList className="follows" header="Followers" people={this.props.followers} max={6} />
+            <PeopleList className="follows" header="Followers" people={this.props.followers} alias={this.props.match.params.alias} max={6} />
           </Grid>
 
           <Grid item xs={5}>

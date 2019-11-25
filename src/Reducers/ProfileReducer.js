@@ -18,12 +18,18 @@ export const getFollowers = (last=null, action) => {
       [action.payload.alias]: action.payload.followers
     }
   }
-  /*else if (action.type === "GET_MORE_FOLLOWERS") {
+  else if (action.type === "GET_MORE_FOLLOWERS") {
     if(last !== null) {
-      return last.concat(action.payload.follow);
+      return {
+        ...last,
+        [action.payload.alias]: [...(last[action.payload.alias]), ...action.payload.followers]
+      }
     }
-    else return action.payload;
-  }*/
+    else return {
+      ...last,
+      [action.payload.alias]: action.payload.followers
+    }
+  }
   else return last;
 }
 
@@ -37,12 +43,18 @@ export const getFollowing = (last=null, action) => {
       }
     }
   }
-  /*else if (action.type === "GET_MORE_FOLLOWING") {
+  else if (action.type === "GET_MORE_FOLLOWING") {
     if(last !== null) {
-      return last.concat(action.payload.follow);
+      return {
+        ...last,
+        [action.payload.alias]: [...(last[action.payload.alias]), ...action.payload.following]
+      }
     }
-    else return action.payload;
-  }*/
+    else return {
+      ...last,
+      [action.payload.alias]: action.payload.following
+    }
+  }
   else return last;
 }
 
@@ -51,6 +63,12 @@ export const getStoryReducer = (last=null, action) => {
     return {
       ...last,
       [action.payload.alias]: action.payload.story
+    }
+  }
+  else if (action.type === "GET_MORE_USER_STORY") {
+    return {
+      ...last,
+      [action.payload.alias]: [...(last[action.payload.alias]), ...action.payload.story]
     }
   }
   else return last;

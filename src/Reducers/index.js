@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { getSearchReducer } from './SearchReducer';
 import { getHashtagsReducer } from './HashtagReducer';
-import { getNewsFeedReducer, getPostListReducer } from './FeedReducer';
+import { getNewsFeedReducer } from './FeedReducer';
 import { loginReducer } from './LoginReducer';
 import { getProfileReducers, getFollowers, getFollowing, getStoryReducer } from './ProfileReducer';
 import { isFollowing } from './IsFollowingReducer';

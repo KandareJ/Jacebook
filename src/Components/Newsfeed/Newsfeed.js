@@ -4,7 +4,7 @@ import PostList from '../PostList/PostList';
 import NewPost from './NewPost';
 import SideMenu from '../SideMenu/SideMenu';
 import { connect } from 'react-redux';
-import {getNewsFeedAction, getMorePostsAction } from '../../Actions/FeedAction';
+import { getNewsFeedAction, getMoreNewsFeedAction } from '../../Actions/FeedAction';
 import './NewsFeed.css';
 
 class Newsfeed extends Component {
@@ -14,7 +14,8 @@ class Newsfeed extends Component {
 
   loadMore() {
     return () => {
-      this.props.getMorePostsAction(this.props.alias, this.props.feed[this.props.feed.length - 1].id);
+      this.props.getMoreNewsFeedAction(this.props.alias, this.props.feed[this.props.feed.length - 1].timestamp);
+      //this.props.getMorePostsAction(this.props.alias, this.props.feed[this.props.feed.length - 1].id);
     }
   }
 
@@ -48,4 +49,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { getNewsFeedAction, getMorePostsAction })(Newsfeed);
+export default connect(mapStateToProps, { getNewsFeedAction, getMoreNewsFeedAction })(Newsfeed);

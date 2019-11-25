@@ -4,17 +4,20 @@ import PostList from '../PostList/PostList';
 import NewPost from '../Newsfeed/NewPost';
 import ProfileHead from './ProfileHead';
 import PeopleList from '../PeopleList/PeopleList';
-import { getFollowers, getFollowing, getProfile, getStory } from '../../Actions/ProfileAction';
-import { getPostListAction } from '../../Actions/FeedAction';
+import { getFollowers, getFollowing, getProfile, getStory, getMoreStory } from '../../Actions/ProfileAction';
+//import { getPostListAction } from '../../Actions/FeedAction';
 import { connect } from 'react-redux';
 import './Profile.css';
 
 class Profile extends Component {
+  constructor(props){
+    super(props);
+    this.viewMore = this.viewMore.bind(this);
+  }
   //this.props.match.params.alias
   componentDidMount() {
     this.props.getFollowers(this.props.match.params.alias);
     this.props.getFollowing(this.props.match.params.alias);
-    this.props.getPostListAction(this.props.match.params.alias);
     this.props.getProfile(this.props.match.params.alias);
     this.props.getStory(this.props.match.params.alias);
   }
@@ -26,6 +29,10 @@ class Profile extends Component {
       this.props.getProfile(this.props.match.params.alias);
       this.props.getStory(this.props.match.params.alias);
     }
+  }
+
+  viewMore(){
+    this.props.getMoreStory(this.props.match.params.alias, this.props.posts[this.props.posts.length - 1].timestamp)
   }
 
   render() {
@@ -46,7 +53,7 @@ class Profile extends Component {
             <div className="scrollable-content">
               {this.props.isMe && <NewPost updateList={this.props.getStory} />}
               <PostList posts={this.props.posts} alias={this.props.alias} / >
-              <button className="form-button">View More</button>
+              <button className="form-button" onClick={this.viewMore}>View More</button>
             </div>
           </Grid>
 
@@ -71,4 +78,4 @@ const mapStateToProps = (state, props) => {
   };
 }
 
-export default connect(mapStateToProps, { getFollowers, getFollowing, getPostListAction, getProfile, getStory })(Profile);
+export default connect(mapStateToProps, { getFollowers, getFollowing, getProfile, getStory, getMoreStory })(Profile);

@@ -73,7 +73,12 @@ let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/acc
         axios.post(url, { alias, firstName, lastName, password, photo:imageResp.data.url }).then((resp) => {
           dispatch({
               type: "USER_SIGNUP",
-              payload: resp.data
+              payload: {
+                authToken: resp.data.authToken,
+                message: resp.data.message,
+                alias,
+                photo: resp.data.photo
+              }
             });
         }).catch((error) => {
           if(error.response && (error.response.status === 500 || error.response.status === 400)) {

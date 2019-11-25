@@ -29,7 +29,8 @@ export default class Header extends Component {
     return(
       <div className="form-inline">
         <input className="search-bar" type="text" value={this.state.search} placeholder="Search" onChange={this.onChange("search")} />
-        <button onClick={this.clear} className="search-button"><Link className="link-style" to={`/search/${this.state.search}`}><FontAwesomeIcon className="summary-icon" size="xs" icon={faSearch} /></Link></button>
+        {/*<button onClick={this.clear} className="search-button"><Link className="link-style" to={`/search/${this.state.search}`}><FontAwesomeIcon className="summary-icon" size="xs" icon={faSearch} /></Link></button>*/}
+        <button onClick={this.clear} className="search-button"><Link className="link-style" to={`/profile/${this.state.search}`}><FontAwesomeIcon className="summary-icon" size="xs" icon={faSearch} /></Link></button>
       </div>
     );
   }

@@ -18,7 +18,7 @@ export const getProfile = (alias) => {
 };
 
 export const getFollowers = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=6`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=3`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -35,7 +35,7 @@ export const getFollowers = (alias) => {
 }
 
 export const getFollowing = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=6`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=3`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -50,36 +50,57 @@ export const getFollowing = (alias) => {
 }
 
 export const getMoreFollowing = (alias, lastFollowing) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=6&lastFollower=${lastFollowing}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=3&lastFollower=${lastFollowing}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
           type: "GET_MORE_FOLLOWING",
-          payload: resp.data.url
+          payload: {
+            alias,
+            following: resp.data.follow
+          }
         });
     });
   }
 }
 
 export const getMoreFollowers = (alias, lastFollower) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=6&lastFollower=${lastFollower}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=3&lastFollower=${lastFollower}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
           type: "GET_MORE_FOLLOWERS",
-          payload: resp.data
+          payload: {
+            alias,
+            followers: resp.data.follow
+          }
         });
     });
   }
 }
 
-export const getStory = (alias, lastPost) => {
+export const getStory = (alias) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/story?pageSize=10`;
+  return function (dispatch) {
+    axios.get(url).then((resp) => {
+      dispatch({
+          type: "GET_USER_STORY",
+          payload: {
+            alias,
+            story: resp.data.story
+          }
+        });
+    });
+  }
+}
+
+export const getMoreStory = (alias, lastPost) => {
   if (lastPost === undefined || lastPost === null) lastPost = "";
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/story?pageSize=10&lastPost=${lastPost}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
-          type: "GET_USER_STORY",
+          type: "GET_MORE_USER_STORY",
           payload: {
             alias,
             story: resp.data.story

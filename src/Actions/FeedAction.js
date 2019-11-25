@@ -12,6 +12,18 @@ export const getNewsFeedAction = (alias) => {
     };
 }
 
+export const getMoreNewsFeedAction = (alias, lastPost) => {
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=10&lastPost=${lastPost}`;
+    return function (dispatch) {
+      axios.get(url).then((resp) => {
+        dispatch({
+            type: "GET_MORE_NEWS_FEED",
+            payload: resp.data.posts
+          });
+      })
+    };
+}
+
 /*export const getPostListAction = (alias) => {
   let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=25`;
     return function (dispatch) {

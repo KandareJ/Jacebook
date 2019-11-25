@@ -2,6 +2,9 @@ export const getNewsFeedReducer = (last=null, action) => {
   if (action.type === "GET_NEWS_FEED") {
     return action.payload
   }
+  if (action.type === "GET_MORE_NEWS_FEED") {
+    return [...last, ...action.payload];
+  }
   else return last;
 }
 

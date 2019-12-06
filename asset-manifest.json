@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Jacebook/static/css/main.d7934920.chunk.css",
+    "main.js": "/Jacebook/static/js/main.78ddc9f4.chunk.js",
+    "main.js.map": "/Jacebook/static/js/main.78ddc9f4.chunk.js.map",
+    "runtime~main.js": "/Jacebook/static/js/runtime~main.2db0373a.js",
+    "runtime~main.js.map": "/Jacebook/static/js/runtime~main.2db0373a.js.map",
+    "static/js/2.0b82475e.chunk.js": "/Jacebook/static/js/2.0b82475e.chunk.js",
+    "static/js/2.0b82475e.chunk.js.map": "/Jacebook/static/js/2.0b82475e.chunk.js.map",
+    "index.html": "/Jacebook/index.html",
+    "precache-manifest.1beaf8932453b067824d82f219fdda6c.js": "/Jacebook/precache-manifest.1beaf8932453b067824d82f219fdda6c.js",
+    "service-worker.js": "/Jacebook/service-worker.js",
+    "static/css/main.d7934920.chunk.css.map": "/Jacebook/static/css/main.d7934920.chunk.css.map"
+  }
+}

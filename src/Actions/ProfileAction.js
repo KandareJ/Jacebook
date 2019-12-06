@@ -18,7 +18,7 @@ export const getProfile = (alias) => {
 };
 
 export const getFollowers = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=3`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=6`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -35,7 +35,7 @@ export const getFollowers = (alias) => {
 }
 
 export const getFollowing = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=3`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=6`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -50,7 +50,7 @@ export const getFollowing = (alias) => {
 }
 
 export const getMoreFollowing = (alias, lastFollowing) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=3&lastFollower=${lastFollowing}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=18&lastFollower=${lastFollowing}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -65,7 +65,7 @@ export const getMoreFollowing = (alias, lastFollowing) => {
 }
 
 export const getMoreFollowers = (alias, lastFollower) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=3&lastFollower=${lastFollower}`;
+  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=18&lastFollower=${lastFollower}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({

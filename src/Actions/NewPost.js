@@ -40,6 +40,7 @@ export const makePost = (token, content, image, video, callback) => {
     })
   }
   else {
+    var start = Date.now();
     let body = {
       content,
       hashtags,
@@ -50,6 +51,8 @@ export const makePost = (token, content, image, video, callback) => {
     }
 
     axios.post(url, body, {headers: {authToken: token}}).then((resp) => {
+      var millis = Date.now() - start;
+      console.log("Response time", millis);
       callback();
     })
   }

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const updatePic = (token, photo, callback) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/updateprofile`;
+  let url = `${BASE_URL}/accounts/updateprofile`;
     return function (dispatch) {
       axios.post(url, {toUpload: photo}, {headers: {authToken: token}}).then((resp) => {
         callback();

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const getSearch = () => {
-  let url = `http://localhost:8080/sky/cloud/EZFfKF5Z3caeJnxdyEugBR/jacebook/getSearch`;
+  let url = `${BASE_URL}/jacebook/getSearch`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({

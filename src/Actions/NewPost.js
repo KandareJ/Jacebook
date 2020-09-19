@@ -1,14 +1,16 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const makePost = (token, content, image, video, callback) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/post/create`;
+  let url = `${BASE_URL}/post/create`;
   if(content === null || content.length < 1) return;
   let hashtags = getHashtags(content);
   let mentions = getMentions(content);
   let urls = getURLs(content);
 
   if(image !== "null") {
-    axios.post(`https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`, {toUpload:image}).then((resp) => {
+    axios.post(`${BASE_URL}/upload`, {toUpload:image}).then((resp) => {
       let body = {
         content,
         hashtags,
@@ -24,7 +26,7 @@ export const makePost = (token, content, image, video, callback) => {
     })
   }
   else if (video !== "null") {
-    axios.post(`https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`, {toUpload:video}).then((resp) => {
+    axios.post(`${BASE_URL}/upload`, {toUpload:video}).then((resp) => {
       let body = {
         content,
         hashtags,

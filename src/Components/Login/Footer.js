@@ -9,7 +9,7 @@ export default class Footer extends Component {
         <Grid container spacing={3}>
           <Grid item xs={3} />
           <Grid item xs={9}>
-            <p className="footer-text">Jacebook © 2019</p>
+            <p className="footer-text">Jacebook © 2020</p>
           </Grid>
         </Grid>
       </div>

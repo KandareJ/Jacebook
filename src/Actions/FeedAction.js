@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const getNewsFeedAction = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=10`;
+  let url = `${BASE_URL}/feed/${alias}?pageSize=10`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -13,7 +15,7 @@ export const getNewsFeedAction = (alias) => {
 }
 
 export const getMoreNewsFeedAction = (alias, lastPost) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/feed/${alias}?pageSize=10&lastPost=${lastPost}`;
+  let url = `${BASE_URL}/feed/${alias}?pageSize=10&lastPost=${lastPost}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({

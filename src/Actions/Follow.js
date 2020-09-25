@@ -1,14 +1,16 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const follow = (token, followAlias, callback) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/follow/${followAlias}`;
+  let url = `${BASE_URL}/follow/${followAlias}`;
   axios.post(url, {}, {headers: {authToken: token}}).then((resp) => {
     callback();
   })
 };
 
 export const unfollow = (token, unfollowAlias, callback) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/unfollow/${unfollowAlias}`;
+  let url = `${BASE_URL}/unfollow/${unfollowAlias}`;
 
   axios.post(url, {}, {headers: {authToken: token}}).then((resp) => {
     callback();
@@ -16,7 +18,7 @@ export const unfollow = (token, unfollowAlias, callback) => {
 }
 
 export const isFollowing = (token, alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/isfollowing/${alias}`;
+  let url = `${BASE_URL}/isfollowing/${alias}`;
   return function (dispatch) {
     axios.get(url, {headers: {authToken: token}}).then((resp) => {
       dispatch({

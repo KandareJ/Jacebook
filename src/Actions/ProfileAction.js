@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const getProfile = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}`;
+  let url = `${BASE_URL}/users/${alias}`;
     return function (dispatch) {
       axios.get(url).then((resp) => {
         dispatch({
@@ -18,7 +20,7 @@ export const getProfile = (alias) => {
 };
 
 export const getFollowers = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=6`;
+  let url = `${BASE_URL}users/${alias}/followers?pageSize=6`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -35,7 +37,7 @@ export const getFollowers = (alias) => {
 }
 
 export const getFollowing = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=6`;
+  let url = `${BASE_URL}/users/${alias}/following?pageSize=6`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -50,7 +52,7 @@ export const getFollowing = (alias) => {
 }
 
 export const getMoreFollowing = (alias, lastFollowing) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/following?pageSize=18&lastFollower=${lastFollowing}`;
+  let url = `${BASE_URL}/users/${alias}/following?pageSize=18&lastFollower=${lastFollowing}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -65,7 +67,7 @@ export const getMoreFollowing = (alias, lastFollowing) => {
 }
 
 export const getMoreFollowers = (alias, lastFollower) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/followers?pageSize=18&lastFollower=${lastFollower}`;
+  let url = `${BASE_URL}/users/${alias}/followers?pageSize=18&lastFollower=${lastFollower}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -80,7 +82,7 @@ export const getMoreFollowers = (alias, lastFollower) => {
 }
 
 export const getStory = (alias) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/story?pageSize=10`;
+  let url = `${BASE_URL}/users/${alias}/story?pageSize=10`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({
@@ -96,7 +98,7 @@ export const getStory = (alias) => {
 
 export const getMoreStory = (alias, lastPost) => {
   if (lastPost === undefined || lastPost === null) lastPost = "";
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/users/${alias}/story?pageSize=10&lastPost=${lastPost}`;
+  let url = `${BASE_URL}/users/${alias}/story?pageSize=10&lastPost=${lastPost}`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({

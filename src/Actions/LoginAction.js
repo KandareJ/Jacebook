@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { BASE_URL } from './API';
+
 export const loginAction = (alias, password) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signin`;
+  let url = `${BASE_URL}/accounts/signin`;
     return function (dispatch) {
       axios.get(url, {headers: {username: alias, password}}).then((resp) => {
         dispatch({
@@ -67,7 +69,7 @@ export const createAccount = (alias, firstName, lastName, password, confirmPassw
   }
 
   //all fields filled and passwords match
-let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/accounts/signup`;
+let url = `${BASE_URL}/accounts/signup`;
     return function (dispatch) {
       uploadImage(image).then((imageResp)=>{
         axios.post(url, { alias, firstName, lastName, password, photo:imageResp.data.url }).then((resp) => {
@@ -104,6 +106,6 @@ let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/acc
 }
 
 const uploadImage = (image) => {
-  let url = `https://7akt1g0mpl.execute-api.us-west-2.amazonaws.com/Mileston3b/upload`;
+  let url = `${BASE_URL}/upload`;
   return axios.post(url, {toUpload: image});
 }

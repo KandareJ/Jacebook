@@ -28,7 +28,7 @@ class NewPost extends Component {
   }
 
   appendText(toAppend) {
-    this.setState({asgagfdsfsagf
+    this.setState({
       content: (this.state.content + toAppend)
     })
   }

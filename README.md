@@ -1,6 +1,6 @@
 # Jacebook
 
-In my CS 340 class, we had to create a twitter-like platform. The Jacebook front end is written in react.
+In my CS 340 class, we had to create a twitter-like platform. This repo contains the front end written in React JS. It has been written to interface with various databases.
 
 ### `npm start`
 

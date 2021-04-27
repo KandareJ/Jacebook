@@ -1,8 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Jacebook
 
-## Available Scripts
-
-In the project directory, you can run:
+In my CS 340 class, we had to create a twitter-like platform. The Jacebook front end is written in react.
 
 ### `npm start`
 

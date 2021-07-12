@@ -20,7 +20,7 @@ export const getProfile = (alias) => {
 };
 
 export const getFollowers = (alias) => {
-  let url = `${BASE_URL}users/${alias}/followers?pageSize=6`;
+  let url = `${BASE_URL}/users/${alias}/followers?pageSize=6`;
   return function (dispatch) {
     axios.get(url).then((resp) => {
       dispatch({

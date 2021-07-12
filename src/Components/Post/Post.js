@@ -92,7 +92,7 @@ export default class Post extends Component {
           <div className="mentions-hashtags-margins">
             {this.props.post.hashtags && this.showHashtags()}
             {this.props.post.mentions && this.showMentions()}
-            <Link className="link-style" style={{float:"right"}} to={`/post/${this.props.post.id}`}><FontAwesomeIcon className="side-menu-icon" size="1x" icon={faEye} /></Link>
+            {/*<Link className="link-style" style={{float:"right"}} to={`/post/${this.props.post.id}`}><FontAwesomeIcon className="side-menu-icon" size="1x" icon={faEye} /></Link>*/}
           </div>
         </Card>
         </div>

@@ -68,7 +68,7 @@ class CreateAccount extends Component {
           </div>
         </form>
         <hr align="left" className="horizontal-rule" />
-        <p className="privacy-policy">BYU CS 340 assignment</p>
+        <p className="privacy-policy">BYU CS 452 assignment</p>
       </div>
     );
   }

@@ -2,7 +2,7 @@
   "name": "jacebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kandarej.github.io/Jacebook",
+  "homepage": "~IdeaProjects/Jacebook Backend/build",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.24",
     "@fortawesome/free-solid-svg-icons": "^5.11.1",

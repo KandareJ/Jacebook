@@ -36,7 +36,7 @@ class Profile extends Component {
   }
 
   render() {
-    console.log("in profile", this.props.match.params.alias)
+    //console.log("in profile", this.props.match.params.alias)
     return(
       <div className="feed-body">
         <ProfileHead alias={this.props.alias} name={this.props.name} photo={this.props.photo} isMe={this.props.isMe} />
